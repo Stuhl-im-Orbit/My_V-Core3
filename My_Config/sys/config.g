@@ -2,19 +2,18 @@
 ; executed by the firmware on start-up
 
 
-; configuration for ...
-; ... V-Core 3 300x300
-; ... Duet 3 Mini 5+ with
-; ... Duet 3 Toolboard 1LC (on CAN ID #121)
+; configuration for V-Core 3 300x300 with
+; ... Duet 3 Mini 5+ Wifi
+; ... Duet 3 Toolboard 1LC (on default CAN ID #121)
 ; ... Duet Paneldue 7i
 ; ... Duet Rotating Magnet Filament Monitor
-; ... slice engineering Mosquito hotend
-; ... slice engeneering 300C high temperature thermistor for hotend
+; ... BLTouch v3.1
 ; ... custom Keenovo silicone heater pad 280x280 (600W) 220V
 ; ... Keenovo C-Lin SSR 40A440VAC solid state relay
+; ... Slice Engineering Mosquito hotend
+; ... Slice Engeneering 300C high temperature thermistor for hotend
 ; ... BondTech LGX extruder
 ; ... Steppers X,Y and Z: LDO 1.8 48mm LDO-42STH47-2504AC (current rating: 2.5A/Phase)
-; ... BLTouch v3.1 Z-probe
 
 
 ; General preferences
@@ -81,8 +80,8 @@ M307 H0 B0 S1.00                                                         ; disab
 M140 H0                                                                  ; map heated bed to heater 0
 M143 H0 S110                                                             ; set temperature limit for heater 0 to 110C
 
-; !!! Run Bed PID Tune with "M303 H0 S60" and replace M307 below with the
-; !!! result, we have AC heater therefore leave omit Vnnn
+; !!! Run bed PID tune with "M303 H0 S70" and replace M307 below with
+; !!! the result, we have AC heated bed, therefore omit Vnnn
 ; M307 H0 B0 R0.487 C383.6 D2.05 S1.00
 
 M308 S1 P"121.temp0" Y"thermistor" T100000 B4680 C6.455513e-8  A"Hotend" ; configure sensor 1 as thermistor on pin temp0 on tool board (slice engineering 300C)
@@ -90,7 +89,8 @@ M950 H1 C"121.out0" T1                                                   ; creat
 M307 H1 B0 S1.00                                                         ; disable bang-bang mode for heater and set PWM limit
 M143 H1 S280                                                             ; set temperature limit for heater 1 to 280C
 
-; !!! Run Heater with "M303 H0 S220" and replace M307 below with the result
+; !!! Run nozzle heater PID Tune with "M303 H0 S220" and replace
+; !!!  M307 below with the result
 ; M307 H1 B0 R1.620 C183.6 D7.36 S1.00 V24.0
 
 
