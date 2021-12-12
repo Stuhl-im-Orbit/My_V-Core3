@@ -31,7 +31,7 @@ while true
   echo "Repeating calibration because deviation is too high (" ^ move.calibration.initial.deviation ^ "mm)"
 ; end loop
 echo "Auto calibration successful, deviation", move.calibration.final.deviation ^ "mm"
-G0 X150 Y150 Z10 F9000
+G0 X150 Y150 Z10 F3600
 
 G28 Z                      ; rehome Z as the absolute height of the z plane may have shifted
 G29 S1                     ; load saved mesh
