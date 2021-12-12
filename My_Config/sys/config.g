@@ -3,17 +3,17 @@
 
 
 ; configuration for V-Core 3 300x300 with
-; ... Duet 3 Mini 5+ Wifi
-; ... Duet 3 Toolboard 1LC (on default CAN ID #121)
-; ... Duet Paneldue 7i
-; ... Duet Rotating Magnet Filament Monitor
-; ... BLTouch v3.1
-; ... custom Keenovo silicone heater pad 280x280 (600W) 220V
-; ... Keenovo C-Lin SSR 40A440VAC solid state relay
-; ... Slice Engineering Mosquito hotend
-; ... Slice Engeneering 300C high temperature thermistor for hotend
-; ... BondTech LGX extruder
-; ... Steppers X,Y and Z: LDO 1.8 48mm LDO-42STH47-2504AC (current rating: 2.5A/Phase)
+; - Duet 3 Mini 5+ Wifi
+; - Duet 3 Toolboard 1LC (on default CAN ID #121)
+; - Duet Paneldue 7i
+; - Duet Rotating Magnet Filament Monitor
+; - BLTouch v3.1
+; - Custom Keenovo silicone heater pad 280x280 (600W) 220V
+; - Keenovo C-Lin SSR 40A440VAC solid state relay
+; - Slice Engineering Mosquito hotend
+; - Slice Engeneering 300C high temperature thermistor for hotend
+; - BondTech LGX extruder (e-steps value : 400 using 16 microsteps, stepper 1.8 current rating: 1A/Phase)
+; - Steppers X,Y and Z: LDO 1.8 48mm LDO-42STH47-2504AC (current rating: 2.5A/Phase)
 
 
 ; General preferences
@@ -87,9 +87,9 @@ M143 H0 S110                                                             ; set t
 M308 S1 P"121.temp0" Y"thermistor" T100000 B4680 C6.455513e-8  A"Hotend" ; configure sensor 1 as thermistor on pin temp0 on tool board (slice engineering 300C)
 M950 H1 C"121.out0" T1                                                   ; create nozzle heater output on out0 on toolboard and map it to sensor 1
 M307 H1 B0 S1.00                                                         ; disable bang-bang mode for heater and set PWM limit
-M143 H1 S280                                                             ; set temperature limit for heater 1 to 280C
+M143 H1 S285                                                             ; set temperature limit for heater 1 to 285C
 
-; !!! Run nozzle heater PID Tune with "M303 H0 S220" and replace
+; !!! Run nozzle heater PID tune with "M303 H0 S220" and replace
 ; !!!  M307 below with the result
 ; M307 H1 B0 R1.620 C183.6 D7.36 S1.00 V24.0
 
