@@ -43,14 +43,14 @@ M569 P0.1 S1 D3                                                          ; physi
 M569 P0.2 S1 D3                                                          ; physical drive 0.2 goes forwards use stealthChop2 (Z right)
 M569 P0.3 S1 D3                                                          ; physical drive 0.3 goes forwards use stealthChop2 (Y)
 M569 P0.4 S1 D3                                                          ; physical drive 0.4 goes forwards use stealthChop2 (X)
-M569 P121.0 S1 D3                                                        ; physical drive 121.0 goes forwards use stealthChop2 (Extruder)
+M569 P121.0 S1 D3                                                        ; physical drive 121.0 goes forwards use stealthChop2 (extruder)
 M584 X0.4 Y0.3 Z0.0:0.1:0.2 E121.0                                       ; set drive mapping
 M350 X16 Y16 Z16 E16 I1                                                  ; configure microstepping with interpolation
 M92 X80.00 Y80.00 Z800.00 E400.00                                        ; set steps per mm
-M566 X600.00 Y600.00 Z60.00 E600.00 P1                                   ; set maximum instantaneous speed changes (mm/min) and jerk policy
+M566 X600.00 Y600.00 Z60.00 E300.00 P1                                   ; set maximum instantaneous speed changes (mm/min) and jerk policy
 M203 X10800.00 Y10800.00 Z1000.00 E3600.00                               ; set maximum speeds (mm/min)
 M201 X3000.00 Y3000.00 Z100.00 E3600.00                                  ; set accelerations (mm/s^2)
-M906 X1500 Y1500 Z1500 E600 I30                                          ; set motor currents (mA, 60 to 90 per cent of current rating) and motor idle factor in per cent
+M906 X1250 Y1250 Z1250 E500 I30                                          ; set motor currents (mA, 50 to 90 per cent of current rating) and motor idle factor in per cent
 M84 S30                                                                  ; Set idle timeout
 
 
@@ -68,7 +68,7 @@ M574 Z1 S2                                                               ; confi
 ; Z-Probe
 M950 S0 C"121.io0.out"                                                   ; create servo pin 0 for BLTouch on tool board
 M558 P9 C"121.io0.in" H5 F120 T6000 A5                                   ; set Z probe type to bltouch and the dive height + speeds on tool board
-G31 P500 X-28 Y-13 Z0.9                                                  ; set Z probe trigger value, offset and trigger height
+G31 P500 X-28 Y-13 Z0.9                                                  ; set Z probe trigger value, offset and trigger height, more Z means closer to the bed
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                 ; define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P5                                                  ; define 5x5 mesh grid
 
@@ -84,7 +84,7 @@ M143 H0 S110                                                             ; set t
 ; !!! the result, we have AC heated bed, therefore omit Vnnn
 ; M307 H0 B0 R0.487 C383.6 D2.05 S1.00
 
-M308 S1 P"121.temp0" Y"thermistor" T100000 B4680 C6.455513e-8  A"Hotend" ; configure sensor 1 as thermistor on pin temp0 on tool board (slice engineering 300C)
+M308 S1 P"121.temp0" Y"thermistor" T100000 B4680 C6.455513e-8  A"Hotend" ; configure sensor 1 as thermistor on pin temp0 on tool board (Slice Engineering 300C)
 M950 H1 C"121.out0" T1                                                   ; create nozzle heater output on out0 on toolboard and map it to sensor 1
 M307 H1 B0 S1.00                                                         ; disable bang-bang mode for heater and set PWM limit
 M143 H1 S285                                                             ; set temperature limit for heater 1 to 285C
@@ -109,7 +109,7 @@ M302 S180 R180                                                           ; allow
 
 
 ; Accelerometer
-M955 P121.0 I12                                                          ; Accelerometer on tool board, oriented counter clockwise 90
+M955 P121.0 I12                                                          ; accelerometer on tool board, oriented counter clockwise 90
 
 
 ; Filament Monitor
