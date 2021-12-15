@@ -61,7 +61,7 @@ M208 X310 Y300 Z300 S0                                                   ; set a
 
 ; Endstops
 M574 X2 S1 P"121.io2.in"                                                 ; configure switch-type (e.g. microswitch) endstop for high end on X via pin io2.in on tool board
-M574 Y2 S1 P"io1.in"                                                     ; configure switch-type (e.g. microswitch) endstop for high end on Y via pin io0.in
+M574 Y2 S1 P"io1.in"                                                     ; configure switch-type (e.g. microswitch) endstop for high end on Y via pin io1.in
 M574 Z1 S2                                                               ; configure Z-probe endstop for low end on Z
 
 
