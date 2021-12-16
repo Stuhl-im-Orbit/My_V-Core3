@@ -12,7 +12,7 @@
 ; - Keenovo C-Lin SSR 40A440VAC solid state relay
 ; - Slice Engineering Mosquito hotend
 ; - Slice Engeneering 300C high temperature thermistor for hotend
-; - BondTech LGX extruder (e-steps value : 400 using 16 microsteps, stepper 1.8 current rating: 1A/Phase)
+; - BondTech LGX extruder (e-steps value : 400 using 16 microsteps, stepper 1.8 current rating: 1A/Phase, recomended 0.45A - 0.6A max 0.7A)
 ; - Steppers X,Y and Z: LDO 1.8 48mm LDO-42STH47-2504AC (current rating: 2.5A/Phase)
 
 
