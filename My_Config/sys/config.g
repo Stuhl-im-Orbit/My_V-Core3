@@ -8,7 +8,7 @@
 ; - Duet Paneldue 7i
 ; - Duet Rotating Magnet Filament Monitor
 ; - BLTouch v3.1
-; - Custom Keenovo silicone heater pad 280x280 (600W) 220V
+; - Keenovo silicone heater pad 280x280 (600W) 220V
 ; - Keenovo C-Lin SSR 40A440VAC solid state relay
 ; - Slice Engineering Mosquito hotend
 ; - Slice Engeneering 300C high temperature thermistor for hotend
@@ -20,7 +20,7 @@
 M111 S0                                                                  ; debug off
 M929 P"eventlog.txt" S1                                                  ; start logging to file eventlog.txt; level is warning
 G4 S3                                                                    ; wait for tool board to start
-M575 P1 S1 B115200                                                       ; enable support for PanelDue
+M575 P1 S1 B57600                                                        ; enable support for PanelDue
 575 P0 B250000                                                           ; set baud rate for USB port
 G21                                                                      ; work in millimeters
 G90                                                                      ; send absolute coordinates...
@@ -117,8 +117,8 @@ M591 D0 P3 C"121.io1.in" S1 R70:130 L24.8 E3.0                           ; Duet3
                                                                          ; enabled, 70% to 130% tolerance, sensitivity 24.8mm.rev, 3mm detection length
 
 ; misc settings
-M404 N1.75 D0.4                                                          ; set filament width and nozzle diameter
-M572 D0 S0.10                                                            ; set extruder pressure advance amount
-M593 F60                                                                 ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
+:M404 N1.75 D0.4                                                          ; set filament width and nozzle diameter
+;M572 D0 S0.10                                                            ; set extruder pressure advance amount
+;M593 F60                                                                 ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
 M501                                                                     ; load saved parameters from config-override.g
 T0                                                                       ; select tool 0
