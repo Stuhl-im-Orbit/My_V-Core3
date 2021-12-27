@@ -67,7 +67,7 @@ M574 Z1 S2                                                               ; confi
 
 ; Z-Probe
 M950 S0 C"121.io0.out"                                                   ; create servo pin 0 for BLTouch on tool board
-M558 P9 C"121.io0.in" H5 F120 T6000 A5                                   ; set Z probe type to bltouch and the dive height + speeds on tool board
+M558 P9 C"121.io0.in" H5 R0.2 F120 T6000 A5                              ; set Z probe type to bltouch on tool board and some parameters
 G31 P500 X-28 Y-13 Z0.9                                                  ; set Z probe trigger value, offset and trigger height, more Z means closer to the bed
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                 ; define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P5                                                  ; define 5x5 mesh grid

@@ -9,10 +9,6 @@ if !move.axes[0].homed or !move.axes[1].homed or !move.axes[2].homed
   echo "not all axes homed, homing axes first"
   G28
 
-; BLTouch
-M280 P0 S160              ; precautionary alarm release
-M280 P0 S90               ; ensure the pin is raised
-
 ; calibrate bed
 while true
   if iterations = 5
