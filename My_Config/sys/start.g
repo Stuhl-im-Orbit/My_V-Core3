@@ -1,6 +1,6 @@
 
 ; bed.g
-; executed before each print; before any slicer code isr run
+; executed before each print; before any slicer code is run
 
 T0           ; ensure the tool is selected
 M572 D0 S0.0 ; clear pressure advance
