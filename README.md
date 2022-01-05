@@ -1,7 +1,8 @@
 # My_V-Core3
 Work in progress.
 I still waiting for my printer, so this config ist made without testing, just on paper.
-- V-Core 3 300x300 with
+
+V-Core 3 300x300 with
  - Duet 3 Mini 5+ Wifi
  - Duet 3 Toolboard 1LC
  - Duet Paneldue 7i
