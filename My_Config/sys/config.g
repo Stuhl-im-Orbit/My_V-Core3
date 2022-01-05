@@ -47,8 +47,8 @@ M569 P121.0 S1 D3                                                        ; physi
 M584 X0.4 Y0.3 Z0.0:0.1:0.2 E121.0                                       ; set drive mapping
 M350 X16 Y16 Z16 E16 I1                                                  ; configure microstepping with interpolation
 M92 X80.00 Y80.00 Z800.00 E400.00                                        ; set steps per mm
-M566 X600.00 Y600.00 Z40.00 E600.00 P1                                   ; set maximum instantaneous speed changes (mm/min) and jerk policy
-M203 X10800.00 Y10800.00 Z1000.00 E3600.00                               ; set maximum speeds (mm/min)
+M566 X600.00 Y600.00 Z6.00 E3600.00 P1                                   ; set maximum instantaneous speed changes (mm/min) and jerk policy
+M203 X10800.00 Y10800.00 Z600 E3600.00                                   ; set maximum speeds (mm/min)
 M201 X3000.00 Y3000.00 Z100.00 E3600.00                                  ; set accelerations (mm/s^2)
 M906 X1250 Y1250 Z1000 E500 I30                                          ; set motor currents and motor idle factor in per cent
 M84 S30                                                                  ; Set idle timeout
@@ -95,9 +95,9 @@ M143 H1 S285                                                             ; set t
 
 
 ; Fans
-M950 F0 C"121.out1" Q250                                                 ; create fan 0 on pin out1 on tool board and set its frequency
+M950 F0 C"121.out1" Q100                                                 ; create fan 0 on pin out1 on tool board and set its frequency
 M106 P0 C"Layer Fan" S1 H-1                                              ; set fan 0 value. Thermostatic control is turned off
-M950 F1 C"121.out2" Q250                                                 ; create fan 1 on pin out2 on tool board and set its frequency
+M950 F1 C"121.out2" Q100                                                 ; create fan 1 on pin out2 on tool board and set its frequency
 M106 P1 C"Hotend Fan" S1 H1 T45 L255                                     ; set fan 1 value. Thermostatic control is turned on
 
 
@@ -115,6 +115,10 @@ M955 P121.0 I12                                                          ; accel
 ; Filament Monitor
 M591 D0 P3 C"121.io1.in" S1 R70:130 L24.8 E3.0                           ; Duet3D rotating magnet sensor for extruder drive 0 is connected to io1.in on tool board,
                                                                          ; enabled, 70% to 130% tolerance, sensitivity 24.8mm.rev, 3mm detection length
+
+; Mainboard Sensor
+M308 S2 P"mcutemp" Y"mcutemp" A"Duet Board"                              ; Configure MCU sensor (may work or not, depends on batch of hw)
+
 
 ; misc settings
 M404 N1.75 D0.4                                                          ; set filament width and nozzle diameter
