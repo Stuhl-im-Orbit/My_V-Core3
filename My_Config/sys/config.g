@@ -38,12 +38,12 @@ M586 P2 S0                                                               ; disab
 
 
 ; Drives
-M569 P0.0 S1 D3                                                          ; physical drive 0.0 goes forwards use stealthChop2 (Z left)
-M569 P0.1 S1 D3                                                          ; physical drive 0.1 goes forwards use stealthChop2 (Z back)
-M569 P0.2 S1 D3                                                          ; physical drive 0.2 goes forwards use stealthChop2 (Z right)
-M569 P0.3 S1 D3                                                          ; physical drive 0.3 goes forwards use stealthChop2 (Y)
-M569 P0.4 S1 D3                                                          ; physical drive 0.4 goes forwards use stealthChop2 (X)
-M569 P121.0 S1 D3                                                        ; physical drive 121.0 goes forwards use stealthChop2 (extruder)
+M569 P0.0 S1 D2                                                          ; physical drive 0.0 goes forwards use spread cycle (Z left)
+M569 P0.1 S1 D2                                                          ; physical drive 0.1 goes forwards use spread cycle (Z back)
+M569 P0.2 S1 D2                                                          ; physical drive 0.2 goes forwards use spread cycle (Z right)
+M569 P0.3 S1 D2                                                          ; physical drive 0.3 goes forwards use spread cycle (Y)
+M569 P0.4 S1 D2                                                          ; physical drive 0.4 goes forwards use spread cycle (X)
+M569 P121.0 S1 D2                                                        ; physical drive 121.0 goes forwards use spread cycle (extruder)
 M584 X0.4 Y0.3 Z0.0:0.1:0.2 E121.0                                       ; set drive mapping
 M350 X16 Y16 Z16 E16 I1                                                  ; configure microstepping with interpolation
 M92 X80.00 Y80.00 Z800.00 E400.00                                        ; set steps per mm
