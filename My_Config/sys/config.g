@@ -29,7 +29,7 @@ M669 K1                                                                  ; selec
 
 
 ; Network
-M550 P"V-Core3"                                                          ; set printer name
+M550 P"VCore3"                                                           ; set printer name
 M551 Preprap                                                             ; set password, reprap for no password prompt
 M552 S1                                                                  ; enable network
 M586 P0 S1                                                               ; enable HTTP
