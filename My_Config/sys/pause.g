@@ -7,4 +7,3 @@ G91            ; relative positioning
 G1 H2 Z5       ; lift Z by 5mm
 G90            ; absolute positioning
 G1 X0 Y0 F6000 ; go to X=0 Y=0
-T100           ; Put nozzle in standby
