@@ -4,6 +4,7 @@
 
 G91                    ; relative positioning
 G1 H2 Z5 F3600         ; lift Z relative to current position
+M400                   ; wait for all moves to finish
 
 
 G1 H1 X-315 Y305 F3600 ; move quickly to X and Y axis endstop and stop there (coarse home X or Y)
