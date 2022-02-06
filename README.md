@@ -7,7 +7,7 @@ V-Core 3 300x300 with:
  - Duet 3 Toolboard 1LC
  - Duet Paneldue 7i
  - Duet Rotating Magnet Filament Monitor
- - BLTouch v3.1
+ - super P.I.N.D.A
  - Keenovo silicone heater pad 280x280 (600W) 220V
  - Keenovo C-Lin SSR 40A440VAC solid state relay
  - Slice Engineering Mosquito hotend
