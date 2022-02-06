@@ -7,7 +7,7 @@
 ; - Duet 3 Toolboard 1LC (on default CAN ID #121)
 ; - Duet Paneldue 7i
 ; - Duet Rotating Magnet Filament Monitor
-; - BLTouch v3.1
+; - Super PINDA
 ; - Keenovo silicone heater pad 280x280 (600W) 220V
 ; - Keenovo C-Lin SSR 40A440VAC solid state relay
 ; - Slice Engineering Mosquito hotend
@@ -45,12 +45,12 @@ M569 P0.3 S1 D2                                                          ; physi
 M569 P0.4 S1 D2                                                          ; physical drive 0.4 goes forwards use spread cycle (X)
 M569 P121.0 S1 D2                                                        ; physical drive 121.0 goes forwards use spread cycle (extruder)
 M584 X0.4 Y0.3 Z0.0:0.1:0.2 E121.0                                       ; set drive mapping
-M350 X16 Y16 Z16 E16 I1                                                  ; configure microstepping with interpolation
-M92 X80.00 Y80.00 Z800.00 E400.00                                        ; set steps per mm
+M350 X64 Y64 Z64 E64 I0                                                  ; configure microstepping @64 without interpolation
+M92 X320.00 Y320.00 Z3200.00 E1600.00                                    ; set steps per mm @64 microstepping
 M566 X600.00 Y600.00 Z6.00 E3600.00 P1                                   ; set maximum instantaneous speed changes (mm/min) and jerk policy
-M203 X10800.00 Y10800.00 Z600 E3600.00                                   ; set maximum speeds (mm/min)
+M203 X18000.00 Y18000.00 Z1200.00 E3600.00                               ; set maximum speeds (mm/min)
 M201 X3000.00 Y3000.00 Z100.00 E3600.00                                  ; set accelerations (mm/s^2)
-M906 X1250 Y1250 Z1000 E600 I30                                          ; set motor currents and motor idle factor in per cent
+M906 X1600 Y1600 Z1600 E600 I30                                          ; set motor currents and motor idle factor in per cent
 M84 S30                                                                  ; Set idle timeout
 
 
@@ -66,9 +66,8 @@ M574 Z1 S2                                                               ; confi
 
 
 ; Z-Probe
-M950 S0 C"121.io0.out"                                                   ; create servo pin 0 for BLTouch on tool board
-M558 P9 C"121.io0.in" H5 R0.2 F120 T6000 A5                              ; set Z probe type to bltouch on tool board and some parameters
-G31 P500 X-28 Y-13 Z0.9                                                  ; set Z probe trigger value, offset and trigger height, more Z means closer to the bed
+M558 P8 C"121.io0.in" H5 F300 T6000 A2 S0.05                             ; Z probe superpinda
+G31 P500 X-28 Y-13 Z1.5                                                  ; set Z probe trigger value, offset and trigger height
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                 ; define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P5                                                  ; define 5x5 mesh grid
 
