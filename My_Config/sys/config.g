@@ -88,7 +88,7 @@ M950 H1 C"121.out0" T1                                                   ; creat
 M307 H1 B0 S1.00                                                         ; disable bang-bang mode for heater and set PWM limit
 M143 H1 S285                                                             ; set temperature limit for heater 1 to 285C
 
-; !!! Run nozzle heater PID tune with "M303 H0 S220" and replace
+; !!! Run nozzle heater PID tune with "M303 H1 S220" and replace
 ; !!!  M307 below with the result
 ; M307 H1 B0 R1.620 C183.6 D7.36 S1.00 V24.0
 
