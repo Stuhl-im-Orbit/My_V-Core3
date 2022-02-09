@@ -50,7 +50,7 @@ M92 X320.00 Y320.00 Z3200.00 E1600.00                                    ; set s
 M566 X600.00 Y600.00 Z6.00 E3600.00 P1                                   ; set maximum instantaneous speed changes (mm/min) and jerk policy
 M203 X18000.00 Y18000.00 Z1200.00 E3600.00                               ; set maximum speeds (mm/min)
 M201 X3000.00 Y3000.00 Z100.00 E3600.00                                  ; set accelerations (mm/s^2)
-M906 X1600 Y1600 Z1600 E600 I30                                          ; set motor currents and motor idle factor in per cent
+M906 X1400 Y1400 Z1400 E600 I30                                          ; set motor currents and motor idle factor in per cent
 M84 S30                                                                  ; Set idle timeout
 
 
