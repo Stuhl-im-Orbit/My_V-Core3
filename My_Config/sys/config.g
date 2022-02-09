@@ -120,7 +120,7 @@ M308 S2 P"mcutemp" Y"mcutemp" A"Duet Board"                              ; Confi
 
 
 ; misc settings
-M404 N1.75 D0.4                                                          ; set filament width and nozzle diameter
+M404 N1.75                                                               ; set filament width
 ;M572 D0 S0.10                                                            ; set extruder pressure advance amount
 ;M593 F60                                                                 ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
 M501                                                                     ; load saved parameters from config-override.g
