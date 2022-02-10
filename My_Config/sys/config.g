@@ -26,11 +26,11 @@ G21                                                                      ; work 
 G90                                                                      ; send absolute coordinates...
 M83                                                                      ; ...but relative extruder moves
 M669 K1                                                                  ; select CoreXY mode
-
-
-; Network
 M550 P"VCore3"                                                           ; set printer name
-M551 Preprap                                                             ; set password, reprap for no password prompt
+
+
+; Network (comment the whole block if using raspberry pi i.e. sbc mode)
+M551 P"reprap"                                                           ; set password, reprap for no password prompt
 M552 S1                                                                  ; enable network
 M586 P0 S1                                                               ; enable HTTP
 M586 P1 S0                                                               ; disable FTP
@@ -75,7 +75,7 @@ M557 X20:280 Y20:280 P5                                                  ; defin
 ; Heaters and temperature sensors
 M308 S0 P"temp0" Y"thermistor" T100000 B3950 A"Bed"                      ; configure sensor 0 as thermistor on pin temp0
 M950 H0 C"out0" T0 Q10                                                   ; create bed heater output on out0 and map it to sensor 0, 10Hz PWM frequency (AC via SSR for bed heater)
-M307 H0 B0 S1.00                                                         ; disable bang-bang mode for the bed heater and set PWM limit
+M307 H0 B0 S0.10                                                         ; disable bang-bang mode for the bed heater and set PWM limit
 M140 H0                                                                  ; map heated bed to heater 0
 M143 H0 S110                                                             ; set temperature limit for heater 0 to 110C
 
@@ -95,9 +95,9 @@ M143 H1 S285                                                             ; set t
 
 ; Fans
 M950 F0 C"121.out1" Q100                                                 ; create fan 0 on pin out1 on tool board and set its frequency
-M106 P0 C"Layer Fan" S1 H-1                                              ; set fan 0 value. Thermostatic control is turned off
+M106 P0 C"Layer Fan" S0 H-1                                              ; set fan 0 value. Thermostatic control is turned off
 M950 F1 C"121.out2" Q100                                                 ; create fan 1 on pin out2 on tool board and set its frequency
-M106 P1 C"Hotend Fan" S1 H1 T45 L255                                     ; set fan 1 value. Thermostatic control is turned on
+M106 P1 C"Hotend Fan" S1 H1 T45                                          ; set fan 1 value. Thermostatic control is turned on
 
 
 ; Tools
