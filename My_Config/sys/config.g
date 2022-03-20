@@ -112,7 +112,7 @@ M955 P121.0 I12                                                          ; accel
 
 
 ; Filament Monitor
-M591 D0 P3 C"121.io1.in" S1 R70:130 L24.8 E3.0                           ; Duet3D rotating magnet sensor for extruder drive 0 is connected to io1.in on tool board,
+; M591 D0 P3 C"121.io1.in" S1 R70:130 L24.8 E3.0                           ; Duet3D rotating magnet sensor for extruder drive 0 is connected to io1.in on tool board,
                                                                          ; enabled, 70% to 130% tolerance, sensitivity 24.8mm.rev, 3mm detection length
 
 ; Mainboard Sensor
