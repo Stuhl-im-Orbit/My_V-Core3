@@ -43,7 +43,7 @@ M569 P0.1 S0 D2                                                          ; physi
 M569 P0.2 S0 D2                                                          ; physical drive 0.2 goes backwards use spread cycle (Z right)
 M569 P0.3 S1 D2                                                          ; physical drive 0.3 goes forwards use spread cycle (Y)
 M569 P0.4 S1 D2                                                          ; physical drive 0.4 goes forwards use spread cycle (X)
-M569 P121.0 S1 D2                                                        ; physical drive 121.0 goes forwards use spread cycle (extruder)
+M569 P121.0 S0 D2                                                        ; physical drive 121.0 goes backwards use spread cycle (extruder)
 M584 X0.4 Y0.3 Z0.0:0.1:0.2 E121.0                                       ; set drive mapping
 M350 X64 Y64 Z64 E64 I0                                                  ; configure microstepping @64 without interpolation
 M92 X320.00 Y320.00 Z3200.00 E1600.00                                    ; set steps per mm @64 microstepping
@@ -56,7 +56,7 @@ M84 S30                                                                  ; Set i
 
 ; Axis Limits
 M208 X0 Y0 Z0 S1                                                         ; set axis minima
-M208 X305 Y300 Z300 S0                                                   ; set axis maxima
+M208 X310 Y300 Z300 S0                                                   ; set axis maxima
 
 
 ; Endstops
@@ -67,7 +67,7 @@ M574 Z1 S2                                                               ; confi
 
 ; Z-Probe
 M558 P8 C"121.io0.in" H5 F300 T6000 A3 S0.02                             ; Z probe superpinda
-G31 P500 X-28 Y-13 Z1.5                                                  ; set Z probe trigger value, offset and trigger height
+G31 P500 X-28 Y-13 Z1.132                                                ; set Z probe trigger value, offset and trigger height
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                 ; define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P5                                                  ; define 5x5 mesh grid
 
