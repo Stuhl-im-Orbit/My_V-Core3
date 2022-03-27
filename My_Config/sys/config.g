@@ -21,7 +21,7 @@ M111 S0                                                                  ; debug
 M929 P"eventlog.txt" S1                                                  ; start logging to file eventlog.txt; level is warning
 G4 S3                                                                    ; wait for tool board to start
 M575 P1 S1 B57600                                                        ; enable support for PanelDue
-575 P0 B250000                                                           ; set baud rate for USB port
+M575 P0 B250000                                                          ; set baud rate for USB port
 G21                                                                      ; work in millimeters
 G90                                                                      ; send absolute coordinates...
 M83                                                                      ; ...but relative extruder moves
