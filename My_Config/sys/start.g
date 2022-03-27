@@ -1,4 +1,3 @@
-
 ; bed.g
 ; executed before each print; before any slicer code is run
 

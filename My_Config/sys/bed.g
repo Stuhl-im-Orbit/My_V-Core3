@@ -5,9 +5,7 @@ M290 R0 S0                ; clear baby stepping
 M561                      ; clear any bed transform
 M400                      ; finish all moves, clear the buffer
 
-if !move.axes[0].homed or !move.axes[1].homed or !move.axes[2].homed
-  echo "not all axes homed, homing axes first"
-  G28
+G28
 
 ; calibrate bed
 while true

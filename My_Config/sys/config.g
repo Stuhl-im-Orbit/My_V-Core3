@@ -38,9 +38,9 @@ M586 P2 S0                                                               ; disab
 
 
 ; Drives
-M569 P0.0 S1 D2                                                          ; physical drive 0.0 goes forwards use spread cycle (Z left)
-M569 P0.1 S1 D2                                                          ; physical drive 0.1 goes forwards use spread cycle (Z back)
-M569 P0.2 S1 D2                                                          ; physical drive 0.2 goes forwards use spread cycle (Z right)
+M569 P0.0 S0 D2                                                          ; physical drive 0.0 goes backwards use spread cycle (Z left)
+M569 P0.1 S0 D2                                                          ; physical drive 0.1 goes backwards use spread cycle (Z back)
+M569 P0.2 S0 D2                                                          ; physical drive 0.2 goes backwards use spread cycle (Z right)
 M569 P0.3 S1 D2                                                          ; physical drive 0.3 goes forwards use spread cycle (Y)
 M569 P0.4 S1 D2                                                          ; physical drive 0.4 goes forwards use spread cycle (X)
 M569 P121.0 S1 D2                                                        ; physical drive 121.0 goes forwards use spread cycle (extruder)
@@ -56,11 +56,11 @@ M84 S30                                                                  ; Set i
 
 ; Axis Limits
 M208 X0 Y0 Z0 S1                                                         ; set axis minima
-M208 X310 Y300 Z300 S0                                                   ; set axis maxima
+M208 X305 Y300 Z300 S0                                                   ; set axis maxima
 
 
 ; Endstops
-M574 X2 S1 P"121.io2.in"                                                 ; configure switch-type (e.g. microswitch) endstop for high end on X via pin io2.in on tool board
+M574 X1 S1 P"121.io2.in"                                                 ; configure switch-type (e.g. microswitch) endstop for high end on X via pin io2.in on tool board
 M574 Y2 S1 P"io4.in"                                                     ; configure switch-type (e.g. microswitch) endstop for high end on Y via pin io4.in
 M574 Z1 S2                                                               ; configure Z-probe endstop for low end on Z
 
@@ -74,14 +74,14 @@ M557 X20:280 Y20:280 P5                                                  ; defin
 
 ; Heaters and temperature sensors
 M308 S0 P"temp0" Y"thermistor" T100000 B3950 A"Bed"                      ; configure sensor 0 as thermistor on pin temp0
-M950 H0 C"out0" T0 Q10                                                   ; create bed heater output on out0 and map it to sensor 0, 10Hz PWM frequency (AC via SSR for bed heater)
-M307 H0 B0 S0.10                                                         ; disable bang-bang mode for the bed heater and set PWM limit
+M950 H0 C"out0" T0                                                       ; create bed heater output on out0 and map it to sensor 0
+M307 H0 B0 S1.00                                                         ; disable bang-bang mode for the bed heater and set PWM limit
 M140 H0                                                                  ; map heated bed to heater 0
 M143 H0 S110                                                             ; set temperature limit for heater 0 to 110C
 
 ; !!! Run bed PID tune with "M303 H0 S70" and replace M307 below with
-; !!! the result, we have AC heated bed, therefore omit Vnnn
-; M307 H0 B0 R0.487 C383.6 D2.05 S1.00
+; !!! the result
+M307 H0 R0.738 K0.339:0.000 D5.25 E1.35 S1.00 B0
 
 M308 S1 P"121.temp0" Y"thermistor" T100000 B4680 C6.455513e-8  A"Hotend" ; configure sensor 1 as thermistor on pin temp0 on tool board (Slice Engineering 300C)
 M950 H1 C"121.out0" T1                                                   ; create nozzle heater output on out0 on toolboard and map it to sensor 1
@@ -90,14 +90,14 @@ M143 H1 S285                                                             ; set t
 
 ; !!! Run nozzle heater PID tune with "M303 H1 S220" and replace
 ; !!!  M307 below with the result
-; M307 H1 B0 R1.620 C183.6 D7.36 S1.00 V24.0
+M307 H1 R2.740 K0.423:0.000 D5.40 E1.35 S1.00 B0 V24.0
 
 
 ; Fans
-M950 F0 C"121.out1" Q100                                                 ; create fan 0 on pin out1 on tool board and set its frequency
+M950 F0 C"121.out1"                                                      ; create fan 0 on pin out1 on tool board and set its frequency
 M106 P0 C"Layer Fan" S0 H-1                                              ; set fan 0 value. Thermostatic control is turned off
-M950 F1 C"121.out2" Q100                                                 ; create fan 1 on pin out2 on tool board and set its frequency
-M106 P1 C"Hotend Fan" S1 H1 T45                                          ; set fan 1 value. Thermostatic control is turned on
+M950 F1 C"121.out2"                                                      ; create fan 1 on pin out2 on tool board and set its frequency
+M106 P1 C"Tool Fan" S1 H1 T45                                            ; set fan 1 value. Thermostatic control is turned on
 
 
 ; Tools
@@ -108,7 +108,7 @@ M302 S180 R180                                                           ; allow
 
 
 ; Accelerometer
-M955 P121.0 I12                                                          ; accelerometer on tool board, oriented counter clockwise 90
+M955 P121.0 I16                                                          ; accelerometer on tool board, orientation (https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf)
 
 
 ; Filament Monitor
