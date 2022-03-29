@@ -1,11 +1,11 @@
 ; bed.g
 ; called to perform automatic bed compensation via G32
 
-M290 R0 S0                ; clear baby stepping
-M561                      ; clear any bed transform
-M400                      ; finish all moves, clear the buffer
+M290 R0 S0 ; clear baby stepping
+M561       ; clear any bed transform
+M400       ; finish all moves, clear the buffer
 
-G28
+G28        ; home all
 
 ; calibrate bed
 while true
@@ -25,7 +25,7 @@ while true
   echo "Repeating calibration because deviation is too high (" ^ move.calibration.initial.deviation ^ "mm)"
 ; end loop
 echo "Auto calibration successful, deviation", move.calibration.final.deviation ^ "mm"
-G0 X150 Y150 Z10 F3600
+G0 X150 Y150 F7200
 
-G28 Z                      ; rehome Z as the absolute height of the z plane may have shifted
-G29 S1                     ; load saved mesh
+G28 Z     ; rehome Z as the absolute height of the z plane may have shifted
+G29 S1    ; load saved mesh
