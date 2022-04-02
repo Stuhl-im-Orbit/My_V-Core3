@@ -7,7 +7,7 @@ M140 S-274           ; set bed temperature to 0K to turn it off
 G91                  ; set relaitive postitioning
 G1 H2 Z5             ; lift z axis 5mm
 G90                  ; set absolute postitioning
-G1 X150 Y290 F5000.0 ; move to good position for check
+G1 X150 Y290 F7200.0 ; move to good position for check
 M106 P0 S0           ; turn off layer fan
 G4 S30               ; wait 30 seconds
 M106 P1 S0           ; turn off hotend fan

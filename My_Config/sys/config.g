@@ -1,7 +1,6 @@
 ; config.g
 ; executed by the firmware on start-up
 
-
 ; RepRapFirmware 3.4.0 configuration for V-Core 3 300x300 with
 ; - Duet 3 Mini 5+ Wifi
 ; - Duet 3 Toolboard 1LC (on default CAN ID #121)
@@ -20,7 +19,7 @@
 M111 S0                                                                  ; debug off
 M929 P"eventlog.txt" S1                                                  ; start logging to file eventlog.txt; level is warning
 G4 S3                                                                    ; wait for tool board to start
-M575 P1 S1 B57600                                                        ; enable support for PanelDue
+M575 P1 S1 B115200                                                       ; enable support for PanelDue
 M575 P0 B250000                                                          ; set baud rate for USB port
 G21                                                                      ; work in millimeters
 G90                                                                      ; send absolute coordinates...
@@ -47,10 +46,10 @@ M569 P121.0 S0 D2                                                        ; physi
 M584 X0.4 Y0.3 Z0.0:0.1:0.2 E121.0                                       ; set drive mapping
 M350 X64 Y64 Z64 E64 I0                                                  ; configure microstepping @64 without interpolation
 M92 X320.00 Y320.00 Z3200.00 E1600.00                                    ; set steps per mm @64 microstepping
-M566 X800.00 Y800.00 Z6.00 E3600.00 P1                                   ; set maximum instantaneous speed changes (mm/min) and jerk policy
-M203 X24000.00 Y24000.00 Z1200.00 E3600.00                               ; set maximum speeds (mm/min)
-M201 X2500.00 Y2500.00 Z120.00 E3600.00                                  ; set accelerations (mm/s^2)
-M906 X1400 Y1400 Z1400 E600 I30                                          ; set motor currents and motor idle factor in per cent
+M566 X400.00 Y400.00 Z6.00 E3600.00 P1                                   ; set maximum instantaneous speed changes (mm/min) and jerk policy
+M203 X18000.00 Y18000.00 Z1000.00 E3600.00                               ; set maximum speeds (mm/min)
+M201 X2000.00 Y2000.00 Z100.00 E3600.00                                  ; set accelerations (mm/s^2)
+M906 X1600 Y1600 Z1600 E600 I30                                          ; set motor currents and motor idle factor in per cent
 M84 S30                                                                  ; Set idle timeout
 
 
@@ -67,7 +66,7 @@ M574 Z1 S2                                                               ; confi
 
 ; Z-Probe
 M558 P8 C"121.io0.in" H5 F300 T6000 A3 S0.02                             ; Z probe superpinda
-G31 P500 X-28 Y-13 Z1.05                                                 ; set Z probe trigger value, offset and trigger height
+G31 P500 X-28 Y-13 Z1.06                                                 ; set Z probe trigger value, offset and trigger height
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                 ; define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P5                                                  ; define 5x5 mesh grid
 
@@ -121,7 +120,7 @@ M308 S2 P"mcutemp" Y"mcutemp" A"Duet Board"                              ; Confi
 
 ; misc settings
 M404 N1.75                                                               ; set filament width
-M572 D0 S0.05                                                            ; set extruder pressure advance amount
-M593 P"ei3" F34                                                          ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
+M572 D0 S0.08                                                            ; set extruder pressure advance amount
+M593 P"ZVDD" F60                                                         ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
 M501                                                                     ; load saved parameters from config-override.g
 T0                                                                       ; select tool 0
