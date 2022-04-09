@@ -44,11 +44,9 @@ M569 P0.3 S1 D2                                                          ; physi
 M569 P0.4 S1 D2                                                          ; physical drive 0.4 goes forwards use spread cycle (X)
 M569 P121.0 S0 D2                                                        ; physical drive 121.0 goes backwards use spread cycle (extruder)
 M584 X0.4 Y0.3 Z0.0:0.1:0.2 E121.0                                       ; set drive mapping
-M350 X64 Y64 Z64 E64 I0                                                  ; configure microstepping @64 without interpolation
-M92 X320.00 Y320.00 Z3200.00 E1600.00                                    ; set steps per mm @64 microstepping
-M566 X400.00 Y400.00 Z6.00 E3600.00 P1                                   ; set maximum instantaneous speed changes (mm/min) and jerk policy
-M203 X18000.00 Y18000.00 Z1000.00 E3600.00                               ; set maximum speeds (mm/min)
-M201 X2000.00 Y2000.00 Z100.00 E3600.00                                  ; set accelerations (mm/s^2)
+M350 X16 Y16 Z16 E16 I1                                                  ; configure microstepping @16 with interpolation
+M92 X80.00 Y80.00 Z800.00 E400                                           ; set steps per mm @16 microstepping
+M98 P"0:/sys/setspeeds.g"                                                ; set speed and acceleration
 M906 X1600 Y1600 Z1600 E600 I30                                          ; set motor currents and motor idle factor in per cent
 M84 S30                                                                  ; Set idle timeout
 
@@ -65,7 +63,7 @@ M574 Z1 S2                                                               ; confi
 
 
 ; Z-Probe
-M558 P8 C"121.io0.in" H5 F300 T6000 A3 S0.02                             ; Z probe superpinda
+M558 P8 C"121.io0.in" H5 F360:120 T9000 A6 S0.02                         ; Z probe superpinda
 G31 P500 X-28 Y-13 Z1.06                                                 ; set Z probe trigger value, offset and trigger height
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                 ; define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P5                                                  ; define 5x5 mesh grid
@@ -73,15 +71,14 @@ M557 X20:280 Y20:280 P5                                                  ; defin
 
 ; Heaters and temperature sensors
 M308 S0 P"temp0" Y"thermistor" T100000 B3950 A"Bed"                      ; configure sensor 0 as thermistor on pin temp0
-M950 H0 C"out0" T0                                                       ; create bed heater output on out0 and map it to sensor 0
+M950 H0 C"out0" T0 Q10                                                   ; create bed heater output on out0 and map it to sensor 0 PWM 10Hz SSR
 M307 H0 B0 S1.00                                                         ; disable bang-bang mode for the bed heater and set PWM limit
 M140 H0                                                                  ; map heated bed to heater 0
 M143 H0 S110                                                             ; set temperature limit for heater 0 to 110C
 
 ; !!! Run bed PID tune with "M303 H0 S70" and replace M307 below with
 ; !!! the result
-M307 H0 R0.738 K0.339:0.000 D5.25 E1.35 S1.00 B0
-
+M307 H0 R0.739 K0.305:0.000 D5.05 E1.35 S1.00 B0
 M308 S1 P"121.temp0" Y"thermistor" T100000 B4680 C6.455513e-8  A"Hotend" ; configure sensor 1 as thermistor on pin temp0 on tool board (Slice Engineering 300C)
 M950 H1 C"121.out0" T1                                                   ; create nozzle heater output on out0 on toolboard and map it to sensor 1
 M307 H1 B0 S1.00                                                         ; disable bang-bang mode for heater and set PWM limit
@@ -93,9 +90,9 @@ M307 H1 R2.740 K0.423:0.000 D5.40 E1.35 S1.00 B0 V24.0
 
 
 ; Fans
-M950 F0 C"121.out1"                                                      ; create fan 0 on pin out1 on tool board and set its frequency
+M950 F0 C"121.out1" Q100                                                 ; create fan 0 on pin out1 on tool board and set its frequency
 M106 P0 C"Layer Fan" S0 H-1                                              ; set fan 0 value. Thermostatic control is turned off
-M950 F1 C"121.out2"                                                      ; create fan 1 on pin out2 on tool board and set its frequency
+M950 F1 C"121.out2" Q100                                                 ; create fan 1 on pin out2 on tool board and set its frequency
 M106 P1 C"Tool Fan" S1 H1 T45                                            ; set fan 1 value. Thermostatic control is turned on
 
 
@@ -120,7 +117,6 @@ M308 S2 P"mcutemp" Y"mcutemp" A"Duet Board"                              ; Confi
 
 ; misc settings
 M404 N1.75                                                               ; set filament width
-M572 D0 S0.08                                                            ; set extruder pressure advance amount
-M593 P"ZVDD" F60                                                         ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
+M593 P"ZVDD" F47                                                         ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
 M501                                                                     ; load saved parameters from config-override.g
 T0                                                                       ; select tool 0
