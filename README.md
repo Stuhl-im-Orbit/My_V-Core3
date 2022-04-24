@@ -13,6 +13,6 @@ V-Core 3 300x300 with:
  - Steppers X,Y and Z: LDO 1.8 48mm LDO-42STH47-2504AC
 
 SuperSlicer:
- - Start and end G-codes
+ - Start and end G-codes (set it in the slicer not in duet)
 Cura:
- - Start and end G-codes
+ - Start and end G-codes (set it in the slicer not in duet)
