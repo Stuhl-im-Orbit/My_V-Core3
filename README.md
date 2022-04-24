@@ -14,5 +14,6 @@ V-Core 3 300x300 with:
 
 SuperSlicer:
  - Start and end G-codes (set it in the slicer not in duet)
+
 Cura:
  - Start and end G-codes (set it in the slicer not in duet)
