@@ -11,3 +11,10 @@ V-Core 3 300x300 with:
  - Semitec 104 GT2 thermistor for hotend
  - BondTech LGX extruder
  - Steppers X,Y and Z: LDO 1.8 48mm LDO-42STH47-2504AC
+
+SuperSlicer:
+ Start and End G-Codes
+ Profile
+
+Cura:
+ Start and End G-Codes
