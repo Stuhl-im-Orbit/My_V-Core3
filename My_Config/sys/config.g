@@ -9,8 +9,8 @@
 ; - Super PINDA
 ; - Keenovo silicone heater pad 280x280 (600W) 220V
 ; - Keenovo C-Lin SSR 40A440VAC solid state relay
-; - Slice Engineering Mosquito hotend
-; - Slice Engeneering 300C high temperature thermistor for hotend
+; - Trianglelab Dragon Hotend - High Flow
+; - Semitec 104 GT2 thermistor for hotend
 ; - BondTech LGX extruder (e-steps value : 400 using 16 microsteps, stepper 1.8 current rating: 1A/Phase, recomended 0.45A - 0.6A max 0.7A)
 ; - Steppers X,Y and Z: LDO 1.8 48mm LDO-42STH47-2504AC (current rating: 2.5A/Phase)
 
@@ -64,7 +64,7 @@ M574 Z1 S2                                                               ; confi
 
 ; Z-Probe
 M558 P8 C"121.io0.in" H5 F360:120 T9000 A6 S0.02                         ; Z probe superpinda
-G31 P500 X-28 Y-13 Z1.06                                                 ; set Z probe trigger value, offset and trigger height
+G31 P500 X-28 Y-13 Z0.67                                                 ; set Z probe trigger value, offset and trigger height
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                 ; define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P5                                                  ; define 5x5 mesh grid
 
@@ -78,17 +78,15 @@ M143 H0 S110                                                             ; set t
 
 ; !!! Run bed PID tune with "M303 H0 S70" and replace M307 below with
 ; !!! the result
-M307 H0 R0.739 K0.305:0.000 D5.05 E1.35 S1.00 B0
-M308 S1 P"121.temp0" Y"thermistor" T100000 B4680 C6.455513e-8  A"Hotend" ; configure sensor 1 as thermistor on pin temp0 on tool board (Slice Engineering 300C)
+M307 H0 R0.755 K0.299:0.000 D5.14 E1.35 S1.00 B0
+M308 S1 P"121.temp0" Y"thermistor" T100000 B4725 C7.06e-8 A"Hotend"      ; configure sensor 1 as thermistor on pin temp0 on tool board (Semitec 104 GT2)
 M950 H1 C"121.out0" T1                                                   ; create nozzle heater output on out0 on toolboard and map it to sensor 1
 M307 H1 B0 S1.00                                                         ; disable bang-bang mode for heater and set PWM limit
 M143 H1 S285                                                             ; set temperature limit for heater 1 to 285C
 
 ; !!! Run nozzle heater PID tune with "M303 H1 S220" and replace
 ; !!!  M307 below with the result
-M307 H1 R2.740 K0.423:0.000 D5.40 E1.35 S1.00 B0 V24.0
-
-
+M307 H1 R2.880 K0.469:0.000 D5.61 E1.35 S1.00 B0 V23.9
 ; Fans
 M950 F0 C"121.out1" Q100                                                 ; create fan 0 on pin out1 on tool board and set its frequency
 M106 P0 C"Layer Fan" S0 H-1                                              ; set fan 0 value. Thermostatic control is turned off
@@ -97,7 +95,7 @@ M106 P1 C"Tool Fan" S1 H1 T45                                            ; set f
 
 
 ; Tools
-M563 P0 S"Mosquito" D0 H1 F0                                             ; define tool 0 with extruder drive 0 heater 1 and fan 0
+M563 P0 S"DragonHF" D0 H1 F0                                             ; define tool 0 with extruder drive 0 heater 1 and fan 0
 G10 P0 X0 Y0 Z0                                                          ; set tool 0 axis offsets
 G10 P0 R0 S0                                                             ; set initial tool 0 active and standby temperatures to 0C
 M302 S180 R180                                                           ; allow extrusion starting from 180C and retractions already from 180C
@@ -117,6 +115,6 @@ M308 S2 P"mcutemp" Y"mcutemp" A"Duet Board"                              ; Confi
 
 ; misc settings
 M404 N1.75                                                               ; set filament width
-M593 P"ZVDD" F47                                                         ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
+M593 P"MZV" F52                                                          ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
 M501                                                                     ; load saved parameters from config-override.g
 T0                                                                       ; select tool 0
