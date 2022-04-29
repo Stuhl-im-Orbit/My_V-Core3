@@ -1,4 +1,4 @@
-; bed.g
+; start.g
 ; executed before each print; before any slicer code is run
 
 T0                        ; ensure the tool is selected
