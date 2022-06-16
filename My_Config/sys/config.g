@@ -63,8 +63,8 @@ M574 Z1 S2                                                               ; confi
 
 
 ; Z-Probe
-M558 P8 C"121.io0.in" H5 F360:120 T9000 A6 S0.02                         ; Z probe superpinda
-G31 P500 X-28 Y-13 Z0.67                                                 ; set Z probe trigger value, offset and trigger height
+M558 P8 C"121.io0.in" H5 F360:120 T18000 A6 S0.02                        ; Z probe superpinda
+G31 P500 X-28 Y-13 Z0.64                                                 ; set Z probe trigger value, offset and trigger height. More Z means closer to the bed
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                 ; define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P5                                                  ; define 5x5 mesh grid
 
@@ -115,6 +115,6 @@ M308 S2 P"mcutemp" Y"mcutemp" A"Duet Board"                              ; Confi
 
 ; misc settings
 M404 N1.75                                                               ; set filament width
-M593 P"MZV" F52                                                          ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
+M593 P"ZVDD" F51.0                                                       ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
 M501                                                                     ; load saved parameters from config-override.g
 T0                                                                       ; select tool 0
