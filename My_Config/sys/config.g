@@ -64,14 +64,14 @@ M574 Z1 S2                                                               ; confi
 
 ; Z-Probe
 M558 P8 C"121.io0.in" H5 F360:120 T18000 A6 S0.02                        ; Z probe superpinda
-G31 P500 X-28 Y-13 Z0.64                                                 ; set Z probe trigger value, offset and trigger height. More Z means closer to the bed
+G31 P500 X-28 Y-13 Z0.72                                                 ; set Z probe trigger value, offset and trigger height. More Z means closer to the bed
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                 ; define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P5                                                  ; define 5x5 mesh grid
 
 
 ; Heaters and temperature sensors
 M308 S0 P"temp0" Y"thermistor" T100000 B3950 A"Bed"                      ; configure sensor 0 as thermistor on pin temp0
-M950 H0 C"out0" T0 Q10                                                   ; create bed heater output on out0 and map it to sensor 0 PWM 10Hz SSR
+M950 H0 C"out0" T0 Q11                                                   ; create bed heater output on out0 and map it to sensor 0 PWM 11Hz SSR
 M307 H0 B0 S1.00                                                         ; disable bang-bang mode for the bed heater and set PWM limit
 M140 H0                                                                  ; map heated bed to heater 0
 M143 H0 S110                                                             ; set temperature limit for heater 0 to 110C
@@ -84,10 +84,9 @@ M950 H1 C"121.out0" T1                                                   ; creat
 M307 H1 B0 S1.00                                                         ; disable bang-bang mode for heater and set PWM limit
 M143 H1 S285                                                             ; set temperature limit for heater 1 to 285C
 
-; !!! Run nozzle heater PID tune with "M303 H1 S220" and replace
+; !!! Run nozzle heater PID tune with "M303 H1 S240" and replace
 ; !!!  M307 below with the result
-M307 H1 R2.880 K0.469:0.000 D5.61 E1.35 S1.00 B0 V23.9
-
+M307 H1 R2.872 K0.499:0.000 D5.44 E1.35 S1.00 B0 V23.9
 
 ; Fans
 M950 F0 C"121.out1" Q100                                                 ; create fan 0 on pin out1 on tool board and set its frequency
@@ -117,6 +116,6 @@ M308 S2 P"mcutemp" Y"mcutemp" A"Duet Board"                              ; Confi
 
 ; misc settings
 M404 N1.75                                                               ; set filament width
-M593 P"ZVDD" F51.0                                                       ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
+M593 P"MZV" F48.0                                                        ; dynamic acceleration, vary acceleration to cancel ringing at specified frequency in Hz
 M501                                                                     ; load saved parameters from config-override.g
 T0                                                                       ; select tool 0
