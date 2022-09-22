@@ -75,17 +75,13 @@ M950 H0 C"out0" T0 Q11                                                   ; creat
 M307 H0 B0 S1.00                                                         ; disable bang-bang mode for the bed heater and set PWM limit
 M140 H0                                                                  ; map heated bed to heater 0
 M143 H0 S110                                                             ; set temperature limit for heater 0 to 110C
-; !!! Run bed PID tune with "M303 H0 S70" and replace M307 below with
-; !!! the result
-M307 H0 R0.755 K0.299:0.000 D5.14 E1.35 S1.00 B0
+M307 H0 R0.755 K0.299:0.000 D5.14 E1.35 S1.00 B0                         ; result of bed PID tune with "M303 H0 S70"
 
 M308 S1 P"121.temp0" Y"thermistor" T100000 B4725 C7.06e-8 A"Hotend"      ; configure sensor 1 as thermistor on pin temp0 on tool board (Semitec 104 GT2)
 M950 H1 C"121.out0" T1                                                   ; create nozzle heater output on out0 on toolboard and map it to sensor 1
 M307 H1 B0 S1.00                                                         ; disable bang-bang mode for heater and set PWM limit
 M143 H1 S285                                                             ; set temperature limit for heater 1 to 285C
-; !!! Run nozzle heater PID tune with "M303 H1 S240" and replace
-; !!!  M307 below with the result
-M307 H1 R2.872 K0.499:0.000 D5.44 E1.35 S1.00 B0 V23.9
+M307 H1 R2.872 K0.499:0.000 D5.44 E1.35 S1.00 B0 V23.9                   ; result of nozzle heater PID tune with "M303 H1 S240"
 
 ; Fans
 M950 F0 C"121.out1" Q100                                                 ; create fan 0 on pin out1 on tool board and set its frequency
