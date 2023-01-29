@@ -64,7 +64,7 @@ M574 Z1 S2                                                               ; confi
 
 ; Z-Probe
 M558 P8 C"121.io0.in" H5 F360:120 T18000 A6 S0.02                        ; Z probe superpinda
-G31 P500 X-28 Y-13 Z0.72                                                 ; set Z probe trigger value, offset and trigger height. More Z means closer to the bed
+G31 P500 X-28 Y-13 Z1.2                                                  ; set Z probe trigger value, offset and trigger height. More Z means closer to the bed
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                 ; define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P5                                                  ; define 5x5 mesh grid
 
@@ -75,19 +75,24 @@ M950 H0 C"out0" T0 Q11                                                   ; creat
 M307 H0 B0 S1.00                                                         ; disable bang-bang mode for the bed heater and set PWM limit
 M140 H0                                                                  ; map heated bed to heater 0
 M143 H0 S110                                                             ; set temperature limit for heater 0 to 110C
-M307 H0 R0.755 K0.299:0.000 D5.14 E1.35 S1.00 B0                         ; result of bed PID tune with "M303 H0 S70"
 
+; !!! Run bed PID tune with "M303 H0 S70" and replace M307 below with
+; !!! the result
+M307 H0 R0.755 K0.299:0.000 D5.14 E1.35 S1.00 B0
 M308 S1 P"121.temp0" Y"thermistor" T100000 B4725 C7.06e-8 A"Hotend"      ; configure sensor 1 as thermistor on pin temp0 on tool board (Semitec 104 GT2)
 M950 H1 C"121.out0" T1                                                   ; create nozzle heater output on out0 on toolboard and map it to sensor 1
 M307 H1 B0 S1.00                                                         ; disable bang-bang mode for heater and set PWM limit
 M143 H1 S285                                                             ; set temperature limit for heater 1 to 285C
-M307 H1 R2.872 K0.499:0.000 D5.44 E1.35 S1.00 B0 V23.9                   ; result of nozzle heater PID tune with "M303 H1 S240"
+
+; !!! Run nozzle heater PID tune with "M303 H1 S240" and replace
+; !!!  M307 below with the result
+M307 H1 R2.872 K0.499:0.000 D5.44 E1.35 S1.00 B0 V23.9
 
 ; Fans
 M950 F0 C"121.out1" Q100                                                 ; create fan 0 on pin out1 on tool board and set its frequency
 M106 P0 C"Layer Fan" S0 H-1                                              ; set fan 0 value. Thermostatic control is turned off
 M950 F1 C"121.out2" Q100                                                 ; create fan 1 on pin out2 on tool board and set its frequency
-M106 P1 C"Tool Fan" S1 H1 T45                                            ; set fan 1 value. Thermostatic control is turned on
+M106 P1 C"Tool Fan" S1 H1 T35                                            ; set fan 1 value. Thermostatic control is turned on
 
 
 ; Tools

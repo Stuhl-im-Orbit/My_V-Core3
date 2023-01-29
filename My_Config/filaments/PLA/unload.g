@@ -5,6 +5,7 @@ M116              ; wait for the temperatures to be reached
 
 M291 P"Retracting filament ..." R"Unloading PLA" T0
 M83           ; place extruder in relative mode
+G0 E10 F300   ; Extrude a little bit
 G1 E-5 F3600  ; extract filament to cold end area
 G4 P3000      ; wait for three seconds
 G1 E5 F3600   ; push back the filament to smash any stringing
