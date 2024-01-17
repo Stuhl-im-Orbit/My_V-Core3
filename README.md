@@ -17,4 +17,3 @@ SuperSlicer:
 
 Cura:
  - Start and end G-codes (set it in the slicer not in duet)
-
