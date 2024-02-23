@@ -14,4 +14,4 @@ G1 E-130 F300 ; continue extraction slowly, allow the filament time to cool soli
 
 M400         ; wait for moves to complete
 M568 A0      ; set current tool to off state
-M291 P"Finished unloading filament." R"Loading ABS" T10
+M291 P"Finished unloading filament." R"Unloading ABS" T10

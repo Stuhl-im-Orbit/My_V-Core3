@@ -1,2 +1,2 @@
 ; tpre0.g
-; called before tool 0 is selected
+; Called before tool 0 is selected

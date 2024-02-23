@@ -1,15 +1,15 @@
 ; start.g
-; executed before each print; before any slicer code is run
+; Executed before each print; before any slicer code is run
 
-T0                        ; ensure the tool is selected
-M221 S100                 ; set extrusion factor back to 100% in case it was changed
-M290 R0 S0                ; clear any baby-stepping
-M106 P0 S0                ; turn layer fan off if it is on
-M98 P"0:/sys/setspeeds.g" ; set speed and acceleration
-M400                      ; finish all moves, clear the buffer
-G32                       ; calibrate bed
-M703                      ; invoke filament-specific config.g settings
-G90                       ; absolute Positioning
-M83                       ; extruder relative mode
+T0                          ; Ensure the tool is selected
+M221 S100                   ; Set extrusion factor back to 100% in case it was changed
+M290 R0 S0                  ; Clear any baby-stepping
+M106 P0 S0                  ; Turn layer fan off if it is on
+M98 P"0:/sys/setspeeds.g"   ; Set speed and acceleration
+M400                        ; Finish all moves, clear the buffer
+M703                        ; Invoke filament-specific config.g settings
+G90                         ; Set to absolute positioning
+M83                         ; Set extruder to relative mode
 
-; Slicer generated gcode takes it away from here ....
+; Slicer-generated G-code takes over from here ...
+; Ensure that G32 (bed leveling) and G29 (mesh bed leveling) is included in the slicer startup cod
