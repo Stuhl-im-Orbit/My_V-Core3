@@ -16,3 +16,6 @@ SuperSlicer:
 
 Cura:
  - Start and end G-codes (set it in the slicer not in duet)
+
+OrcaSlicer:
+ - Complete profile for Orcaslicer 1.9 
