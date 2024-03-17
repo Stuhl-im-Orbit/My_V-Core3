@@ -79,7 +79,7 @@ M143 H1 S285                                                              ; Set 
 ; !!! Ensure that the nozzle is positioned approximately 1mm above the bed
 ; !!! and that the part cooling fan is set to 25% speed (M106 S64).
 ; !!! Replace the M307 command below with the result.
-M307 H1 R2.614 K0.522:0.000 D6.23 E1.35 S1.00 B0 V24.0
+M307 H1 R4.134 K0.729:0.000 D1.88 E1.35 S1.00 B0 V24.1
 
 ; Mainboard Sensor
 M308 S2 P"mcutemp" Y"mcutemp" A"Duet Board"                               ; Configure MCU sensor (may work or not, depends on batch of hw)
