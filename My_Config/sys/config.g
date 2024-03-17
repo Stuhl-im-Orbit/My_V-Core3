@@ -15,7 +15,7 @@
 
 ; General preferences
 M111 S0                                                                   ; Debug off
-M929 P"eventlog.txt" S1                                                   ; Start logging to file eventlog.txt; level is warning
+M929 S0                                                                   ; Stop logging
 G4 S3                                                                     ; Wait for tool board to start
 M575 P1 S1 B115200                                                        ; Enable support for PanelDue
 M575 P0 B250000                                                           ; Set baud rate for USB port
@@ -57,7 +57,7 @@ M574 Z1 S2                                                                ; Conf
 
 ; Z-Probe
 M558 P8 C"121.io0.in" H3 F360:180 T18000 A6 S0.02                         ; Z probe Super PINDA
-G31 P500 X-28 Y-13 Z1.49                                                  ; Set Z probe trigger value, offset, and trigger height. More Z means closer to the bed
+G31 P500 X-28 Y-13 Z1.50                                                  ; Set Z probe trigger value, offset, and trigger height. More Z means closer to the bed
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                  ; Define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P7                                                   ; Define 7x7 mesh grid
 
@@ -98,7 +98,7 @@ M302 S180 R180                                                            ; Allo
 
 ; Accelerometer
 M955 P121.0 I16                                                           ; Accelerometer on tool board, orientation (https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf)
-M593 P"MZV" F58.5 S0.1                                                    ; Input shaping, vary acceleration to cancel ringing at specified frequency in Hz
+M593 P"ZVD" F49.5 S0.1                                                    ; Input shaping, vary acceleration to cancel ringing at specified frequency in Hz
 
 ; Misc Settings
 M404 N1.75                                                                ; Set filament width
