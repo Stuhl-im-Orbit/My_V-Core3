@@ -8,8 +8,8 @@
 ; - Super PINDA
 ; - Keenovo silicone heater pad 280x280 (600W) 220V
 ; - Keenovo C-Lin SSR 40A440VAC solid state relay
-; - Slice Engineering Mosquito hotend
-; - Slice Engeneering 300C high temperature thermistor for hotend
+; - E3D Revo Voron hotend
+; - Semitec 104NT-4-R025H42G thermistor (Revo Voron)
 ; - BondTech LGX Lite extruder (e-steps value: 562 using 16 microsteps, stepper 1.8, current rating: 1A/Phase)
 ; - Steppers X,Y, and Z: LDO 1.8 48mm LDO-42STH47-2504AC (current rating: 2.5A/Phase)
 
@@ -57,7 +57,7 @@ M574 Z1 S2                                                                ; Conf
 
 ; Z-Probe
 M558 P8 C"121.io0.in" H3 F360:180 T18000 A6 S0.02                         ; Z probe Super PINDA
-G31 P500 X-28 Y-13 Z1.10                                                  ; Set Z probe trigger value, offset, and trigger height. More Z means closer to the bed
+G31 P500 X-28 Y-13 Z1.49                                                  ; Set Z probe trigger value, offset, and trigger height. More Z means closer to the bed
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                  ; Define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P7                                                   ; Define 7x7 mesh grid
 
@@ -71,7 +71,7 @@ M143 H0 S110                                                              ; Set 
 ; !!! Replace the existing M307 command below with the result.
 M307 H0 R0.594 K0.265:0.000 D5.82 E1.35 S1.00 B0
 
-M308 S1 P"121.temp0" Y"thermistor" T100000 B4680 C6.455513e-8  A"Hotend"  ; Configure sensor 1 as thermistor on pin temp0 on tool board (Slice Engineering 300C)
+M308 S1 P"121.temp0" Y"thermistor" T100000 B4658 C6.5338987554e-08 A"Hotend" ; Configure sensor 1 as thermistor on pin temp0 on tool board (Semitec 104NT-4-R025H42G)
 M950 H1 C"121.out0" T1                                                    ; Create nozzle heater output on out0 on toolboard and map it to sensor 1
 M307 H1 B0 S1.00                                                          ; Disable bang-bang mode for heater and set PWM limit
 M143 H1 S285                                                              ; Set temperature limit for heater 1 to 285C
@@ -91,7 +91,7 @@ M950 F1 C"121.out2" Q100                                                  ; Crea
 M106 P1 C"Tool Fan" S1 H1 T35                                             ; Set fan 1 value. Thermostatic control is turned on
 
 ; Tools
-M563 P0 S"Mosquito" D0 H1 F0                                              ; Define tool 0 with extruder drive 0 heater 1 and fan 0
+M563 P0 S"Revo" D0 H1 F0                                                  ; Define tool 0 with extruder drive 0 heater 1 and fan 0
 G10 P0 X0 Y0 Z0                                                           ; Set tool 0 axis offsets
 G10 P0 R0 S0                                                              ; Set initial tool 0 active and standby temperatures to 0C
 M302 S180 R180                                                            ; Allow extrusion starting from 180C and retractions already from 180C
