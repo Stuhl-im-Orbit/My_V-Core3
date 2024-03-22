@@ -1,1 +1,1715 @@
-{"board":"duet3_mini5plus_wifi","expansion_boards":["TOOL1LC"],"firmware":3.3,"standalone":true,"nvram":true,"auto_save":{"enabled":false,"save_threshold":10,"resume_threshold":11,"gcodes_to_run":"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"},"display":{"type":0,"encoder_steps":4,"spi_frequency":2000000,"menus":[{"name":"main","value":""}],"images":[]},"panelDue":true,"geometry":{"type":"corexy","mins":[0,0,0],"maxes":[310,300,300],"delta_radius":105.6,"homed_height":250,"low_dive_height":false,"max_carriage_travel":260,"print_radius":85,"rod_length":215,"z_min":0},"drives":[{"direction":1,"microstepping":16,"microstepping_interpolation":true,"steps_per_mm":80,"instant_dv":6.66,"max_speed":300,"acceleration":3000,"current":1600,"driver":0,"driver_v3":"0.4","endstop_pin":"121.io2.in","endstop_type":1,"endstop_location":2},{"direction":1,"microstepping":16,"microstepping_interpolation":true,"steps_per_mm":80,"instant_dv":6.66,"max_speed":300,"acceleration":3000,"current":1600,"driver":1,"driver_v3":"0.3","endstop_pin":"io4.in","endstop_type":1,"endstop_location":2},{"direction":0,"microstepping":16,"microstepping_interpolation":true,"steps_per_mm":800,"instant_dv":0.1,"max_speed":20,"acceleration":100,"current":1600,"driver":2,"driver_v3":"0.0","endstop_pin":null,"endstop":null,"endstop_type":3,"endstop_location":1},{"direction":0,"microstepping":16,"microstepping_interpolation":true,"steps_per_mm":400,"instant_dv":2,"max_speed":60,"acceleration":3600,"current":600,"driver":3,"driver_v3":"121.0"}],"idle":{"used":true,"factor":30,"timeout":30},"homing_speed_fast":60,"homing_speed_slow":6,"travel_speed":60,"z_dive_height":5,"slow_homing":false,"probe":{"type":"unmodulated","recovery_time":0.4,"trigger_height":0.67,"trigger_value":500,"x_offset":-28,"y_offset":-13,"speed":6,"deploy":false,"points":[],"pwm_channel":3,"pwm_inverted":true,"pwm_pin":null,"input_pin":"121.io0.in","modulation_pin":null},"bed_is_nozzle":false,"bed":{"present":true,"use_pid":true,"heater":0},"chamber":{"present":false,"use_pid":false,"heater":2},"heaters":[{"temp_limit":110,"scale_factor":10,"series":2200,"thermistor":100000,"beta":3950,"c":0,"channel":0,"sensor":0,"output_pin":"out0","sensor_type":"thermistor","sensor_pin":"temp0"},{"temp_limit":285,"scale_factor":100,"series":2200,"thermistor":100000,"beta":4725,"c":7.06e-8,"channel":1,"sensor":1,"output_pin":"121.out0","sensor_type":"thermistor","sensor_pin":"121.temp0"}],"num_nozzles":1,"toolchange_wait_for_temperatures":true,"generate_t_code":true,"tools":[{"mix_ratio":[],"number":0,"name":"DragonHF","extruders":[0],"heaters":[1],"fans":[0],"x_offset":0,"y_offset":0,"z_offset":0}],"compensation_x_offset":15,"compensation_y_offset":15,"peripheral_points":3,"halfway_points":3,"calibration_factors":6,"probe_radius":85,"mesh":{"x_min":20,"x_max":280,"y_min":20,"y_max":280,"radius":85,"spacing":20},"home_first":false,"orthogonal":{"compensation":false,"height":50,"deviations":[0,0,0]},"network":{"enabled":true,"mac_address":"","name":"VCore3","password":"reprap","ssid":"Wifi","ssid_password":"","dhcp":true,"ip":"192.168.1.20","netmask":"255.255.255.0","gateway":"192.168.1.254","protocols":{"http":true,"ftp":false,"telnet":false}},"fans":[{"name":"","value":0,"inverted":false,"frequency":100,"thermostatic":false,"heaters":[],"trigger_temperature":45,"output_pin":"121.out1"},{"name":"","value":100,"inverted":false,"frequency":100,"thermostatic":true,"heaters":[1],"trigger_temperature":45,"output_pin":"121.out2"}],"custom_settings":"M955 P121.0 I16 ; accelerometer on tool board, orientation (https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf)\nM591 D0 P3 C\"121.io1.in\" S1 R70:130 L24.8 E3.0 ; Duet3D rotating magnet sensor for extruder drive 0 is connected to io1.in on tool board\n308 S2 P\"mcutemp\" Y\"mcutemp\" A\"Duet Board\" ; Configure MCU sensor (may work or not, depends on batch of hw)"}
+{
+  "boards": [
+    {
+      "accelerometer": null,
+      "bootloaderFileName": null,
+      "canAddress": 0,
+      "closedLoop": null,
+      "directDisplay": null,
+      "drivers": null,
+      "firmwareDate": "",
+      "firmwareFileName": "Duet3Firmware_Mini5plus.uf2",
+      "firmwareName": "",
+      "firmwareVersion": "",
+      "freeRam": null,
+      "iapFileNameSBC": "Duet3_SBCiap32_Mini5plus.bin",
+      "iapFileNameSD": "Duet3_SDiap32_Mini5plus.bin",
+      "inductiveSensor": null,
+      "maxHeaters": 32,
+      "maxMotors": 7,
+      "mcuTemp": null,
+      "name": "Duet 3 Mini 5+",
+      "shortName": "Mini5plus",
+      "state": "unknown",
+      "supportsDirectDisplay": true,
+      "uniqueId": null,
+      "v12": null,
+      "vIn": {
+        "current": 0,
+        "min": 0,
+        "max": 0
+      },
+      "wifiFirmwareFileName": null
+    },
+    {
+      "accelerometer": {
+        "orientation": 16,
+        "points": 0,
+        "runs": 0
+      },
+      "bootloaderFileName": null,
+      "canAddress": 121,
+      "closedLoop": null,
+      "directDisplay": null,
+      "drivers": null,
+      "firmwareDate": "",
+      "firmwareFileName": "Duet3Firmware_TOOL1LC.bin",
+      "firmwareName": "",
+      "firmwareVersion": "",
+      "freeRam": null,
+      "iapFileNameSBC": null,
+      "iapFileNameSD": null,
+      "inductiveSensor": null,
+      "maxHeaters": 0,
+      "maxMotors": 1,
+      "mcuTemp": null,
+      "name": "",
+      "shortName": "TOOL1LC",
+      "state": "unknown",
+      "supportsDirectDisplay": false,
+      "uniqueId": null,
+      "v12": null,
+      "vIn": null,
+      "wifiFirmwareFileName": null
+    }
+  ],
+  "directories": {
+    "filaments": "0:/filaments",
+    "firmware": "0:/firmware",
+    "gCodes": "0:/gcodes",
+    "macros": "0:/macros",
+    "menu": "0:/menu",
+    "system": "0:/sys",
+    "web": "0:/www"
+  },
+  "fans": [
+    {
+      "actualValue": 0,
+      "blip": 0.1,
+      "frequency": 250,
+      "max": 1,
+      "min": 0,
+      "name": "Layer Fan",
+      "requestedValue": 0,
+      "rpm": -1,
+      "tachoPpr": 2,
+      "thermostatic": {
+        "heaters": [],
+        "highTemperature": null,
+        "lowTemperature": null,
+        "sensors": []
+      }
+    },
+    {
+      "actualValue": 0,
+      "blip": 0.1,
+      "frequency": 250,
+      "max": 1,
+      "min": 0,
+      "name": "Tool Fan",
+      "requestedValue": 0,
+      "rpm": -1,
+      "tachoPpr": 2,
+      "thermostatic": {
+        "heaters": [],
+        "highTemperature": 45,
+        "lowTemperature": 45,
+        "sensors": [
+          1
+        ]
+      }
+    }
+  ],
+  "global": {},
+  "heat": {
+    "bedHeaters": [
+      0
+    ],
+    "chamberHeaters": [],
+    "coldExtrudeTemperature": 160,
+    "coldRetractTemperature": 90,
+    "heaters": [
+      {
+        "active": 0,
+        "avgPwm": 0,
+        "current": -273.15,
+        "max": 110,
+        "maxBadReadings": 3,
+        "maxHeatingFaultTime": 5,
+        "maxTempExcursion": 15,
+        "min": -10,
+        "model": {
+          "coolingExp": 1.35,
+          "coolingRate": 0.56,
+          "deadTime": 5.5,
+          "enabled": false,
+          "fanCoolingRate": 0.56,
+          "heatingRate": 2.43,
+          "inverted": false,
+          "maxPwm": 1,
+          "pid": {
+            "d": 0,
+            "i": 0,
+            "overridden": false,
+            "p": 0,
+            "used": true
+          },
+          "standardVoltage": 0
+        },
+        "monitors": [
+          {
+            "action": 0,
+            "condition": "tooHigh",
+            "limit": 110,
+            "sensor": 0
+          }
+        ],
+        "sensor": 0,
+        "standby": 0,
+        "state": "off"
+      },
+      {
+        "active": 0,
+        "avgPwm": 0,
+        "current": -273.15,
+        "max": 285,
+        "maxBadReadings": 3,
+        "maxHeatingFaultTime": 5,
+        "maxTempExcursion": 15,
+        "min": -10,
+        "model": {
+          "coolingExp": 1.35,
+          "coolingRate": 0.56,
+          "deadTime": 5.5,
+          "enabled": false,
+          "fanCoolingRate": 0.56,
+          "heatingRate": 2.43,
+          "inverted": false,
+          "maxPwm": 1,
+          "pid": {
+            "d": 0,
+            "i": 0,
+            "overridden": false,
+            "p": 0,
+            "used": true
+          },
+          "standardVoltage": 0
+        },
+        "monitors": [
+          {
+            "action": 0,
+            "condition": "tooHigh",
+            "limit": 285,
+            "sensor": 1
+          }
+        ],
+        "sensor": 1,
+        "standby": 0,
+        "state": "off"
+      }
+    ]
+  },
+  "inputs": [],
+  "job": {
+    "build": {
+      "currentObject": -1,
+      "m486names": false,
+      "m486numbers": false,
+      "objects": []
+    },
+    "duration": null,
+    "file": null,
+    "filePosition": null,
+    "lastDuration": null,
+    "lastFileName": null,
+    "lastFileAborted": false,
+    "lastFileCancelled": false,
+    "lastFileSimulated": false,
+    "lastWarmUpDuration": null,
+    "layer": null,
+    "layers": [],
+    "layerTime": null,
+    "pauseDuration": null,
+    "rawExtrusion": null,
+    "timesLeft": {
+      "filament": null,
+      "file": null,
+      "slicer": null
+    },
+    "warmUpDuration": null
+  },
+  "ledStrips": [],
+  "limits": {
+    "axes": 10,
+    "axesPlusExtruders": 12,
+    "bedHeaters": 4,
+    "boards": 5,
+    "chamberHeaters": 4,
+    "drivers": 14,
+    "driversPerAxis": 4,
+    "extruders": 8,
+    "extrudersPerTool": 8,
+    "fans": 20,
+    "gpInPorts": 32,
+    "gpOutPorts": 32,
+    "heaters": 32,
+    "heatersPerTool": 2,
+    "ledStrips": 5,
+    "monitorsPerHeater": 3,
+    "portsPerHeater": 2,
+    "restorePoints": 6,
+    "sensors": 56,
+    "spindles": 4,
+    "tools": 50,
+    "trackedObjects": 40,
+    "triggers": 16,
+    "volumes": 2,
+    "workplaces": 9,
+    "zProbeProgramBytes": 8,
+    "zProbes": 4
+  },
+  "messages": [],
+  "move": {
+    "axes": [
+      {
+        "acceleration": 5000,
+        "babystep": 0,
+        "backlash": 0,
+        "current": 1400,
+        "drivers": [
+          {
+            "board": 0,
+            "driver": 4
+          }
+        ],
+        "homed": false,
+        "jerk": 5,
+        "letter": "X",
+        "machinePosition": null,
+        "max": 310,
+        "maxProbed": false,
+        "microstepping": {
+          "interpolated": true,
+          "value": 16
+        },
+        "min": 0,
+        "minProbed": false,
+        "percentCurrent": 100,
+        "percentStstCurrent": null,
+        "reducedAcceleration": 0,
+        "speed": 500,
+        "stepsPerMm": 80,
+        "userPosition": null,
+        "visible": true,
+        "workplaceOffsets": []
+      },
+      {
+        "acceleration": 5000,
+        "babystep": 0,
+        "backlash": 0,
+        "current": 1400,
+        "drivers": [
+          {
+            "board": 0,
+            "driver": 3
+          }
+        ],
+        "homed": false,
+        "jerk": 5,
+        "letter": "Y",
+        "machinePosition": null,
+        "max": 300,
+        "maxProbed": false,
+        "microstepping": {
+          "interpolated": true,
+          "value": 16
+        },
+        "min": 0,
+        "minProbed": false,
+        "percentCurrent": 100,
+        "percentStstCurrent": null,
+        "reducedAcceleration": 0,
+        "speed": 500,
+        "stepsPerMm": 80,
+        "userPosition": null,
+        "visible": true,
+        "workplaceOffsets": []
+      },
+      {
+        "acceleration": 100,
+        "babystep": 0,
+        "backlash": 0,
+        "current": 1400,
+        "drivers": [
+          {
+            "board": 0,
+            "driver": 0
+          },
+          {
+            "board": 0,
+            "driver": 1
+          },
+          {
+            "board": 0,
+            "driver": 2
+          }
+        ],
+        "homed": false,
+        "jerk": 0.4,
+        "letter": "Z",
+        "machinePosition": null,
+        "max": 300,
+        "maxProbed": false,
+        "microstepping": {
+          "interpolated": true,
+          "value": 16
+        },
+        "min": 0,
+        "minProbed": false,
+        "percentCurrent": 100,
+        "percentStstCurrent": null,
+        "reducedAcceleration": 0,
+        "speed": 15,
+        "stepsPerMm": 800,
+        "userPosition": null,
+        "visible": true,
+        "workplaceOffsets": []
+      }
+    ],
+    "backlashFactor": 10,
+    "calibration": {
+      "final": {
+        "deviation": 0,
+        "mean": 0
+      },
+      "initial": {
+        "deviation": 0,
+        "mean": 0
+      },
+      "numFactors": 0
+    },
+    "compensation": {
+      "fadeHeight": null,
+      "file": null,
+      "liveGrid": null,
+      "meshDeviation": null,
+      "probeGrid": {
+        "axes": [
+          "X",
+          "Y"
+        ],
+        "maxs": [
+          285,
+          275
+        ],
+        "mins": [
+          25,
+          25
+        ],
+        "radius": 0,
+        "spacings": [
+          40,
+          40
+        ]
+      },
+      "skew": {
+        "compensateXY": true,
+        "tanXY": 0,
+        "tanXZ": 0,
+        "tanYZ": 0
+      },
+      "type": "none"
+    },
+    "currentMove": {
+      "acceleration": 0,
+      "deceleration": 0,
+      "extrusionRate": 0,
+      "laserPwm": null,
+      "requestedSpeed": 0,
+      "topSpeed": 0
+    },
+    "extruders": [
+      {
+        "acceleration": 800,
+        "current": 800,
+        "driver": {
+          "board": 121,
+          "driver": 0
+        },
+        "filament": "",
+        "filamentDiameter": 1.75,
+        "factor": 1,
+        "jerk": 5,
+        "microstepping": {
+          "interpolated": true,
+          "value": 16
+        },
+        "nonlinear": {
+          "a": 0,
+          "b": 0,
+          "upperLimit": 0.2
+        },
+        "percentCurrent": 100,
+        "percentStstCurrent": null,
+        "position": 0,
+        "pressureAdvance": 0,
+        "rawPosition": 0,
+        "speed": 120,
+        "stepsPerMm": 591.25
+      }
+    ],
+    "idle": {
+      "factor": 0.3,
+      "timeout": 30
+    },
+    "keepout": [],
+    "kinematics": {
+      "segmentation": {
+        "segmentsPerSec": 0,
+        "minSegmentLength": 0
+      },
+      "name": "coreXY",
+      "tiltCorrection": {
+        "correctionFactor": 0,
+        "lastCorrections": [],
+        "maxCorrection": 0,
+        "screwPitch": 0,
+        "screwX": [],
+        "screwY": []
+      },
+      "forwardMatrix": [
+        [
+          0.5,
+          0.5,
+          0
+        ],
+        [
+          0.5,
+          -0.5,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "inverseMatrix": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    "limitAxes": true,
+    "noMovesBeforeHoming": true,
+    "printingAcceleration": 10000,
+    "queue": [],
+    "rotation": {
+      "angle": 0,
+      "centre": [
+        0,
+        0
+      ]
+    },
+    "shaping": {
+      "amplitudes": [],
+      "damping": 0.1,
+      "durations": [],
+      "frequency": 40,
+      "reductionLimit": 10,
+      "type": "none"
+    },
+    "speedFactor": 1,
+    "travelAcceleration": 10000,
+    "virtualEPos": 0,
+    "workplaceNumber": 0
+  },
+  "network": {
+    "corsSite": null,
+    "hostname": "duet",
+    "interfaces": [
+      {
+        "activeProtocols": [
+          "http"
+        ],
+        "actualIP": "192.168.1.123",
+        "configuredIP": "0.0.0.0",
+        "dnsServer": "192.168.1.254",
+        "firmwareVersion": null,
+        "gateway": "192.168.1.1",
+        "mac": null,
+        "numReconnects": null,
+        "signal": null,
+        "speed": null,
+        "ssid": null,
+        "state": "active",
+        "subnet": "255.255.255.0",
+        "type": "wifi"
+      }
+    ],
+    "name": "VCore3"
+  },
+  "plugins": {},
+  "sbc": null,
+  "sensors": {
+    "analog": [
+      {
+        "beta": null,
+        "c": null,
+        "lastReading": null,
+        "name": "Heated Bed",
+        "offsetAdj": 0,
+        "port": null,
+        "r25": null,
+        "rRef": null,
+        "slopeAdj": 0,
+        "state": "ok",
+        "type": "thermistor"
+      },
+      {
+        "beta": null,
+        "c": null,
+        "lastReading": null,
+        "name": "Nozzle",
+        "offsetAdj": 0,
+        "port": null,
+        "r25": null,
+        "rRef": null,
+        "slopeAdj": 0,
+        "state": "ok",
+        "type": "thermistor"
+      }
+    ],
+    "endstops": [
+      {
+        "highEnd": false,
+        "probe": null,
+        "triggered": false,
+        "type": "inputPin"
+      },
+      {
+        "highEnd": true,
+        "probe": null,
+        "triggered": false,
+        "type": "inputPin"
+      },
+      {
+        "highEnd": false,
+        "probe": null,
+        "triggered": false,
+        "type": "zProbeAsEndstop"
+      }
+    ],
+    "filamentMonitors": [],
+    "gpIn": [],
+    "probes": [
+      {
+        "calibA": null,
+        "calibB": null,
+        "calibrationTemperature": 0,
+        "deployedByUser": false,
+        "disablesHeaters": false,
+        "diveHeight": 3,
+        "diveHeights": [
+          0,
+          0
+        ],
+        "isCalibrated": null,
+        "lastStopHeight": 0,
+        "maxProbeCount": 2,
+        "measuredHeight": null,
+        "offsets": [
+          -28,
+          -13
+        ],
+        "recoveryTime": 0,
+        "scanCoefficients": null,
+        "speeds": [
+          6,
+          3,
+          2
+        ],
+        "temperatureCoefficients": [
+          0,
+          0
+        ],
+        "threshold": 500,
+        "tolerance": 0.02,
+        "travelSpeed": 18000,
+        "triggerHeight": 1.58,
+        "type": 8,
+        "value": []
+      }
+    ]
+  },
+  "spindles": [],
+  "state": {
+    "atxPower": null,
+    "atxPowerPort": null,
+    "beep": null,
+    "currentTool": -1,
+    "deferredPowerDown": null,
+    "displayMessage": "",
+    "gpOut": [],
+    "laserPwm": null,
+    "logFile": null,
+    "logLevel": "off",
+    "messageBox": null,
+    "machineMode": "FFF",
+    "macroRestarted": false,
+    "msUpTime": 0,
+    "nextTool": -1,
+    "pluginsStarted": false,
+    "powerFailScript": "",
+    "previousTool": -1,
+    "restorePoints": [],
+    "startupError": null,
+    "status": "starting",
+    "thisInput": null,
+    "time": null,
+    "upTime": 0
+  },
+  "tools": [
+    {
+      "active": [],
+      "axes": [],
+      "extruders": [
+        0
+      ],
+      "fans": [
+        0
+      ],
+      "feedForward": [],
+      "filamentExtruder": 0,
+      "heaters": [
+        1
+      ],
+      "isRetracted": false,
+      "mix": [],
+      "name": "Revo",
+      "number": 0,
+      "offsets": [],
+      "offsetsProbed": false,
+      "spindle": -1,
+      "spindleRpm": 0,
+      "standby": [],
+      "state": "off"
+    }
+  ],
+  "volumes": [],
+  "configTool": {
+    "version": 1,
+    "autoSave": {
+      "enabled": false,
+      "codesToRun": "M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000",
+      "resumeThreshold": 22,
+      "saveThreshold": 19.8
+    },
+    "autoSelectFirstTool": false,
+    "capabilities": {
+      "cnc": false,
+      "fff": true,
+      "laser": false
+    },
+    "configOverride": true,
+    "customSettings": "",
+    "delta": {
+      "peripheralPoints": 3,
+      "halfwayPoints": 3,
+      "factors": 6,
+      "slowHoming": false,
+      "lowDiveHeight": true,
+      "probeRadius": 85,
+      "probePoints": [
+        {
+          "x": 0,
+          "y": 84.9,
+          "heightCorrection": 0
+        },
+        {
+          "x": 73.53,
+          "y": -42.45,
+          "heightCorrection": 0
+        },
+        {
+          "x": -73.53,
+          "y": -42.45,
+          "heightCorrection": 0
+        },
+        {
+          "x": 0,
+          "y": 42.4,
+          "heightCorrection": 0
+        },
+        {
+          "x": 36.72,
+          "y": -21.2,
+          "heightCorrection": 0
+        },
+        {
+          "x": -36.72,
+          "y": -21.2,
+          "heightCorrection": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "heightCorrection": 0
+        }
+      ],
+      "homeFirst": true
+    },
+    "deployRetractProbes": [],
+    "displayFiles": {
+      "menus": {},
+      "images": {}
+    },
+    "drivers": [
+      {
+        "closedLoop": {
+          "encoderType": 0,
+          "countsPerFullStep": 5
+        },
+        "external": {
+          "enablePolarity": false,
+          "minStepPulse": 5,
+          "minStepInterval": 5,
+          "dirSetupTime": 10,
+          "holdTime": 0
+        },
+        "forwards": false,
+        "homingSpeeds": [
+          10,
+          5
+        ],
+        "id": {
+          "board": 0,
+          "driver": 0
+        },
+        "mode": 2,
+        "tpwmThreshold": 2000,
+        "sgThreshold": 0
+      },
+      {
+        "closedLoop": {
+          "encoderType": 0,
+          "countsPerFullStep": 5
+        },
+        "external": {
+          "enablePolarity": false,
+          "minStepPulse": 5,
+          "minStepInterval": 5,
+          "dirSetupTime": 10,
+          "holdTime": 0
+        },
+        "forwards": false,
+        "homingSpeeds": [
+          10,
+          5
+        ],
+        "id": {
+          "board": 0,
+          "driver": 1
+        },
+        "mode": 2,
+        "tpwmThreshold": 2000,
+        "sgThreshold": 0
+      },
+      {
+        "closedLoop": {
+          "encoderType": 0,
+          "countsPerFullStep": 5
+        },
+        "external": {
+          "enablePolarity": false,
+          "minStepPulse": 5,
+          "minStepInterval": 5,
+          "dirSetupTime": 10,
+          "holdTime": 0
+        },
+        "forwards": false,
+        "homingSpeeds": [
+          10,
+          5
+        ],
+        "id": {
+          "board": 0,
+          "driver": 2
+        },
+        "mode": 2,
+        "tpwmThreshold": 2000,
+        "sgThreshold": 0
+      },
+      {
+        "closedLoop": {
+          "encoderType": 0,
+          "countsPerFullStep": 5
+        },
+        "external": {
+          "enablePolarity": false,
+          "minStepPulse": 5,
+          "minStepInterval": 5,
+          "dirSetupTime": 10,
+          "holdTime": 0
+        },
+        "forwards": true,
+        "homingSpeeds": [
+          10,
+          5
+        ],
+        "id": {
+          "board": 0,
+          "driver": 3
+        },
+        "mode": 2,
+        "tpwmThreshold": 2000,
+        "sgThreshold": 0
+      },
+      {
+        "closedLoop": {
+          "encoderType": 0,
+          "countsPerFullStep": 5
+        },
+        "external": {
+          "enablePolarity": false,
+          "minStepPulse": 5,
+          "minStepInterval": 5,
+          "dirSetupTime": 10,
+          "holdTime": 0
+        },
+        "forwards": true,
+        "homingSpeeds": [
+          20,
+          5
+        ],
+        "id": {
+          "board": 0,
+          "driver": 4
+        },
+        "mode": 2,
+        "tpwmThreshold": 2000,
+        "sgThreshold": 0
+      },
+      {
+        "closedLoop": {
+          "encoderType": 0,
+          "countsPerFullStep": 5
+        },
+        "external": {
+          "enablePolarity": false,
+          "minStepPulse": 5,
+          "minStepInterval": 5,
+          "dirSetupTime": 10,
+          "holdTime": 0
+        },
+        "forwards": true,
+        "homingSpeeds": [
+          10,
+          5
+        ],
+        "id": {
+          "board": 0,
+          "driver": 5
+        },
+        "mode": 2,
+        "tpwmThreshold": 2000,
+        "sgThreshold": 0
+      },
+      {
+        "closedLoop": {
+          "encoderType": 0,
+          "countsPerFullStep": 5
+        },
+        "external": {
+          "enablePolarity": false,
+          "minStepPulse": 5,
+          "minStepInterval": 5,
+          "dirSetupTime": 10,
+          "holdTime": 0
+        },
+        "forwards": true,
+        "homingSpeeds": [
+          10,
+          5
+        ],
+        "id": {
+          "board": 0,
+          "driver": 6
+        },
+        "mode": 2,
+        "tpwmThreshold": 2000,
+        "sgThreshold": 0
+      },
+      {
+        "closedLoop": {
+          "encoderType": 0,
+          "countsPerFullStep": 5
+        },
+        "external": {
+          "enablePolarity": false,
+          "minStepPulse": 5,
+          "minStepInterval": 5,
+          "dirSetupTime": 10,
+          "holdTime": 0
+        },
+        "forwards": false,
+        "homingSpeeds": [
+          10,
+          5
+        ],
+        "id": {
+          "board": 121,
+          "driver": 0
+        },
+        "mode": 2,
+        "tpwmThreshold": 2000,
+        "sgThreshold": 0
+      }
+    ],
+    "expansionBoard": "Duet 3 Mini 2+",
+    "homeBeforeAutoCalibration": false,
+    "homingSpeedFast": 30,
+    "homingSpeedSlow": 6,
+    "laser": {
+      "maxIntensity": 255,
+      "sParamSticky": false
+    },
+    "name": null,
+    "orthogonalDistance": 85,
+    "panelDueChecksum": false,
+    "panelDueBaudRate": 115200,
+    "password": "",
+    "ports": [
+      {
+        "capabilities": [
+          "analogIn",
+          "gpIn"
+        ],
+        "canBoard": 121,
+        "ports": [
+          "121.io0.in"
+        ],
+        "rawPorts": [
+          "121.io0.in"
+        ],
+        "function": "probeIn",
+        "index": 0,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpOut",
+          "pwm"
+        ],
+        "canBoard": 121,
+        "ports": [
+          "121.io0.out"
+        ],
+        "rawPorts": [
+          "121.io0.out"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpIn"
+        ],
+        "canBoard": 121,
+        "ports": [
+          "121.io1.in"
+        ],
+        "rawPorts": [
+          "121.io1.in"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpOut"
+        ],
+        "canBoard": 121,
+        "ports": [
+          "121.io1.out"
+        ],
+        "rawPorts": [
+          "121.io1.out"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpIn"
+        ],
+        "canBoard": 121,
+        "ports": [
+          "121.io2.in"
+        ],
+        "rawPorts": [
+          "121.io2.in"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "heater"
+        ],
+        "canBoard": 121,
+        "ports": [
+          "121.out0"
+        ],
+        "rawPorts": [
+          "121.out0"
+        ],
+        "function": "heater",
+        "index": 1,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "fan"
+        ],
+        "canBoard": 121,
+        "ports": [
+          "121.out1"
+        ],
+        "rawPorts": [
+          "121.out1"
+        ],
+        "function": "fan",
+        "index": 0,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "fanTacho"
+        ],
+        "canBoard": 121,
+        "ports": [
+          "121.out1.tach"
+        ],
+        "rawPorts": [
+          "121.out1.tach"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "fan"
+        ],
+        "canBoard": 121,
+        "ports": [
+          "121.out2"
+        ],
+        "rawPorts": [
+          "121.out2"
+        ],
+        "function": "fan",
+        "index": 1,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "fanTacho"
+        ],
+        "canBoard": 121,
+        "ports": [
+          "121.out2.tach"
+        ],
+        "rawPorts": [
+          "121.out2.tach"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "thermistor"
+        ],
+        "canBoard": 121,
+        "ports": [
+          "121.temp0"
+        ],
+        "rawPorts": [
+          "121.temp0"
+        ],
+        "function": "thermistor",
+        "index": 1,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpIn",
+          "gpInInterrupt",
+          "uart"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "io0.in",
+          "io0.out"
+        ],
+        "rawPorts": [
+          "io0.in",
+          "io0.out"
+        ],
+        "function": "uart",
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpIn",
+          "gpInInterrupt"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "io1.in"
+        ],
+        "rawPorts": [
+          "io1.in"
+        ],
+        "function": null,
+        "index": 1,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpOut"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "io1.out"
+        ],
+        "rawPorts": [
+          "io1.out"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "analogIn",
+          "gpIn",
+          "gpInInterrupt"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "io2.in"
+        ],
+        "rawPorts": [
+          "io2.in"
+        ],
+        "function": "endstop",
+        "index": 0,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpOut",
+          "pwm"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "io2.out"
+        ],
+        "rawPorts": [
+          "io2.out"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpIn",
+          "gpInInterrupt"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "io3.in"
+        ],
+        "rawPorts": [
+          "io3.in"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpOut",
+          "pwm"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "io3.out"
+        ],
+        "rawPorts": [
+          "io3.out"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpIn",
+          "gpInInterrupt"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "io4.in"
+        ],
+        "rawPorts": [
+          "io4.in"
+        ],
+        "function": "endstop",
+        "index": 1,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpOut"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "io4.out",
+          "pson"
+        ],
+        "rawPorts": [
+          "io4.out",
+          "pson"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpIn",
+          "gpInInterrupt"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "io5.in"
+        ],
+        "rawPorts": [
+          "io5.in"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpIn",
+          "gpInInterrupt"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "io6.in"
+        ],
+        "rawPorts": [
+          "io6.in"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "heater"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "out0"
+        ],
+        "rawPorts": [
+          "out0"
+        ],
+        "function": "heater",
+        "index": 0,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "heater"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "out1"
+        ],
+        "rawPorts": [
+          "out1"
+        ],
+        "function": null,
+        "index": 1,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "fan",
+          "heater"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "out2"
+        ],
+        "rawPorts": [
+          "out2"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "fanTacho"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "out2.tach"
+        ],
+        "rawPorts": [
+          "out2.tach"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "fan"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "out3"
+        ],
+        "rawPorts": [
+          "out3"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "fanTacho"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "out3.tach"
+        ],
+        "rawPorts": [
+          "out3.tach"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "fan"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "out4"
+        ],
+        "rawPorts": [
+          "out4"
+        ],
+        "function": null,
+        "index": 1,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "fanTacho"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "out4.tach"
+        ],
+        "rawPorts": [
+          "out4.tach"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "fan"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "out5"
+        ],
+        "rawPorts": [
+          "out5"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "fan"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "out6",
+          "laser",
+          "vfd"
+        ],
+        "rawPorts": [
+          "out6",
+          "laser",
+          "vfd"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 250,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpInInterrupt",
+          "spiCs"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "spi.cs1"
+        ],
+        "rawPorts": [
+          "spi.cs1"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpInInterrupt",
+          "spiCs"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "spi.cs2"
+        ],
+        "rawPorts": [
+          "spi.cs2"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "gpInInterrupt",
+          "spiCs"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "spi.cs3"
+        ],
+        "rawPorts": [
+          "spi.cs3"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "thermistor"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "temp0"
+        ],
+        "rawPorts": [
+          "temp0"
+        ],
+        "function": "thermistor",
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "thermistor"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "temp1"
+        ],
+        "rawPorts": [
+          "temp1"
+        ],
+        "function": null,
+        "index": 1,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "thermistor"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "temp2"
+        ],
+        "rawPorts": [
+          "temp2"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      },
+      {
+        "capabilities": [
+          "uart"
+        ],
+        "canBoard": 0,
+        "ports": [
+          "usb"
+        ],
+        "rawPorts": [
+          "usb"
+        ],
+        "function": null,
+        "index": 0,
+        "frequency": 500,
+        "inverted": false,
+        "pullUp": false
+      }
+    ],
+    "skewOffset": 100,
+    "sensors": [
+      {
+        "adcHighOffset": null,
+        "adcLowOffset": null,
+        "beta": 3950,
+        "r25": 100000,
+        "shC": 7.06e-08,
+        "seriesR": null,
+        "filtered": true,
+        "minTemp": 0,
+        "maxTemp": 200,
+        "thermocoupleType": "K",
+        "mainsFrequency": 50,
+        "numWires": 2,
+        "rref": null,
+        "baseSensor": null
+      },
+      {
+        "adcHighOffset": null,
+        "adcLowOffset": null,
+        "beta": 4725,
+        "r25": 100000,
+        "shC": 7.06e-08,
+        "seriesR": null,
+        "filtered": true,
+        "minTemp": 0,
+        "maxTemp": 200,
+        "thermocoupleType": "K",
+        "mainsFrequency": 50,
+        "numWires": 2,
+        "rref": null,
+        "baseSensor": null
+      }
+    ],
+    "waitForToolTemperatures": true,
+    "wifi": {
+      "ssid": "",
+      "psk": ""
+    }
+  }
+}
