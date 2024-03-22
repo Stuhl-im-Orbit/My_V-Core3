@@ -40,7 +40,7 @@ M569 P0.4 S1 D2                                                           ; Phys
 M569 P121.0 S0 D2                                                         ; Physical drive 121.0 goes backwards; use spread cycle (extruder)
 M584 X0.4 Y0.3 Z0.0:0.1:0.2 E121.0                                        ; Set drive mapping
 M350 X16 Y16 Z16 E16 I1                                                   ; Configure microstepping @16 with interpolation
-M92 X80.00 Y80.00 Z800.00 E591.25                                         ; Set steps per mm @16 microstepping
+M92 X80 Y80 Z800 E591                                                     ; Set steps per mm @16 microstepping
 M98 P"0:/sys/setspeeds.g"                                                 ; Set speed and acceleration
 M906 X1400 Y1400 Z1400 E800 I30                                           ; Set motor peak currents and motor idle factor in percent
 M84 S30                                                                   ; Set idle timeout
@@ -56,9 +56,9 @@ M574 Z1 S2                                                                ; Conf
 
 ; Z-Probe
 M558 K0 P8 C"121.io0.in" H3 F360:180 T18000 A3 S0.02                      ; Z probe Super PINDA
-G31 P500 X-28 Y-13 Z1.62                                                  ; Set Z probe trigger value, offset, and trigger height. More Z means closer to the bed
+G31 P500 X-28 Y-13 Z1.58                                                  ; Set Z probe trigger value, offset, and trigger height. More Z means closer to the bed
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                  ; Define positions of Z leadscrews, 5mm maximum correction
-M557 X20:280 Y20:280 P7                                                   ; Define 7x7 mesh grid
+M557 X20:280 Y20:280 P5                                                   ; Define 5x5 mesh grid
 
 ;  Sensors
 M308 S0 P"temp0" Y"thermistor" T100000 B3950 C7.06e-8 A"Bed"              ; Configure sensor 0 as thermistor on pin temp0
@@ -81,9 +81,9 @@ M307 H1 R4.066 K0.724:0.000 D2.13 E1.35 S1.00 B0 V24.1
 
 ; Fans
 M950 F0 C"121.out1"                                                       ; Create fan 0 on pin out1 on tool board
-M106 P0 C"Layer Fan" S0 L0 X1 B0.1                                        ; Set fan 0 value. Thermostatic control is turned off
+M106 P0 C"Layer Fan" S0 B0.1 L0 X1                                        ; Set fan 0 value. Thermostatic control is turned off
 M950 F1 C"121.out2"                                                       ; Create fan 1 on pin out2 on tool board
-M106 P1 C"Tool Fan" S0 B0.1 H1 T45                                        ; Set fan 1 value. Thermostatic control is turned on
+M106 P1 C"Tool Fan"  S0 B0.1 H1 T45                                       ; Set fan 1 value. Thermostatic control is turned on
 
 ; Tools
 M563 P0 S"Revo" D0 H1 F0                                                  ; Define tool 0 with extruder drive 0 heater 1 and fan 0
