@@ -8,7 +8,7 @@ V-Core 3.1 300x300 with:
  - Keenovo C-Lin SSR 40A440VAC solid state relay
  - E3D Revo Voron hotend
  - Semitec 104NT-4-R025H42G thermistor (Revo Voron)
- - BondTech LGX Lite extruder
+ - Orbiter V2.0 extruder
  - Steppers X,Y and Z: LDO 1.8 48mm LDO-42STH47-2504AC
 
 SuperSlicer:

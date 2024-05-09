@@ -10,7 +10,7 @@
 ; - Keenovo C-Lin SSR 40A440VAC solid state relay
 ; - E3D Revo Voron hotend
 ; - Semitec 104NT-4-R025H42G thermistor (Revo Voron)
-; - BondTech LGX Lite extruder (e-steps value: 562 using 16 microsteps, stepper 1.8, current rating: 1A/Phase)
+; - LDO Orbiter V2.0 extruder (e-steps value: 690 using 16 microsteps, stepper 1.8, current rating: 1.2A peak)
 ; - Steppers X,Y, and Z: LDO 1.8 48mm LDO-42STH47-2504AC (current rating: 2.5A/Phase)
 
 ; General preferences
@@ -40,9 +40,9 @@ M569 P0.4 S1 D2                                                           ; Phys
 M569 P121.0 S0 D2                                                         ; Physical drive 121.0 goes backwards; use spread cycle (extruder)
 M584 X0.4 Y0.3 Z0.0:0.1:0.2 E121.0                                        ; Set drive mapping
 M350 X16 Y16 Z16 E16 I1                                                   ; Configure microstepping @16 with interpolation
-M92 X80 Y80 Z800 E591                                                     ; Set steps per mm @16 microstepping
+M92 X80 Y80 Z800 E690                                                     ; Set steps per mm @16 microstepping
 M98 P"0:/sys/setspeeds.g"                                                 ; Set speed and acceleration
-M906 X1400 Y1400 Z1400 E800 I30                                           ; Set motor peak currents and motor idle factor in percent
+M906 X1400 Y1400 Z1400 E1200 I30                                          ; Set motor peak currents and motor idle factor in percent
 M84 S30                                                                   ; Set idle timeout
 
 ; Axis Limits
@@ -56,31 +56,32 @@ M574 Z1 S2                                                                ; Conf
 
 ; Z-Probe
 M558 K0 P8 C"121.io0.in" H3 F360:180 T18000 A3 S0.02                      ; Z probe Super PINDA
-G31 P500 X-28 Y-13 Z1.65                                                  ; Set Z probe trigger value, offset, and trigger height. More Z means closer to the bed
+G31 P500 X-28 Y-13 Z1.54                                                  ; Set Z probe trigger value, offset, and trigger height. More Z means closer to the bed
+                                                                          ; Z1.54 for QSEQ Plate, Z1.65 for Rat Rig Plate, Z1.63 for 3D Jake Plate
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                  ; Define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P5                                                   ; Define 5x5 mesh grid
 
 ;  Sensors
-M308 S0 P"temp0" Y"thermistor" T100000 B3950 C7.06e-8 A"Bed"              ; Configure sensor 0 as thermistor on pin temp0
+M308 S0 P"temp0" Y"thermistor" T100000 B3950 A"Bed"                       ; Configure sensor 0 as thermistor on pin temp0
 M308 S1 P"121.temp0" Y"thermistor" T100000 B4725 C7.06e-8 A"Hotend"       ; Configure sensor 1 as thermistor on pin temp0 on tool board (Semitec 104NT-4-R025H42G)
 M308 S2 P"mcutemp" Y"mcutemp" A"Duet Board"                               ; Configure sensor 2 as MCU sensor (may work or not, depends on batch of hw)
 
 ; Heaters 
 M950 H0 C"out0" T0 Q11                                                    ; Create bed heater output on out0 and map it to sensor 0 PWM 11Hz SSR
 M140 H0                                                                   ; Map heated bed to heater 0
-M143 H0 P0 T0 C0 S110 A0                                                  ; Configure heater monitor, set temperature limit for heater 0 to 110C
+M143 H0 S110                                                              ; Limit heater 0 to 110C
 ; !!! Initiate the bed PID tuning process using the command: "M303 H0 S80". 
 ; !!! Replace the existing M307 command below with the result.
-M307 H0 R0.702 K0.260:0.000 D6.30 E1.35 S1.00 B0
+M307 H0 R0.624 K0.295:0.000 D5.58 E1.35 S1.00 B0
 
 M950 H1 C"121.out0" T1                                                    ; Create nozzle heater output on out0 on toolboard and map it to sensor 1
-M143 H1 P0 T1 C0 S300 A0                                                  ; Configure heater monitor, set temperature limit for heater 1 to 285C
+M143 H1 S300                                                              ; Limit heater 1 to 300C
 ; !!! Initiate the nozzle heater PID tuning process using the command: "M303 H1 S240".
 ; !!! Replace the M307 command below with the result.
 M307 H1 R4.066 K0.724:0.000 D2.13 E1.35 S1.00 B0 V24.1
 
 ; Fans
-M950 F0 C"121.out1"                                                       ; Create fan 0 on pin out1 on tool board
+M950 F0 C"121.out1+out1.tach" Q25000                                      ; Create fan 0 on pin out1 on tool board 25kHz PWM Frequency
 M106 P0 C"Layer Fan" S0 B0.1 L0 X1                                        ; Set fan 0 value. Thermostatic control is turned off
 M950 F1 C"121.out2"                                                       ; Create fan 1 on pin out2 on tool board
 M106 P1 C"Tool Fan"  S0 B0.1 H1 T45                                       ; Set fan 1 value. Thermostatic control is turned on
@@ -94,9 +95,10 @@ M302 S180 R180                                                            ; Allo
 
 ; Accelerometer
 M955 P121.0 I16                                                           ; Accelerometer on tool board, orientation (https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf)
-M593 P"EI2" F65 S0.1                                                      ; Input shaping, vary acceleration to cancel ringing at specified frequency in Hz
+M593 P"EI2" F65.3 S0.1                                                   ; Input shaping, vary acceleration to cancel ringing at specified frequency in Hz
 
 ; Misc Settings
 M404 N1.75                                                                ; Set filament width
 M501                                                                      ; Load saved parameters from config-override.g
+M572 D0 S0.02                                                             ; Pressure advance
 T0                                                                        ; Select tool 0
