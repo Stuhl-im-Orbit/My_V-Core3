@@ -81,8 +81,8 @@ M143 H1 S300                                                              ; Limi
 M307 H1 R4.066 K0.724:0.000 D2.13 E1.35 S1.00 B0 V24.1
 
 ; Fans
-M950 F0 C"121.out1+out1.tach" Q25000                                      ; Create fan 0 on pin out1 on tool board 25kHz PWM Frequency
-M106 P0 C"Layer Fan" S0 B0.1 L0 X1                                        ; Set fan 0 value. Thermostatic control is turned off
+M950 F0 C"121.out1"                                                       ; Create fan 0 on pin out1 on tool board
+M106 P0 C"Layer Fan" S0 B0.1 H-1                                          ; Set fan 0 value. Thermostatic control is turned off
 M950 F1 C"121.out2"                                                       ; Create fan 1 on pin out2 on tool board
 M106 P1 C"Tool Fan"  S0 B0.1 H1 T45                                       ; Set fan 1 value. Thermostatic control is turned on
 
@@ -95,7 +95,7 @@ M302 S180 R180                                                            ; Allo
 
 ; Accelerometer
 M955 P121.0 I16                                                           ; Accelerometer on tool board, orientation (https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf)
-M593 P"EI2" F65.3 S0.1                                                   ; Input shaping, vary acceleration to cancel ringing at specified frequency in Hz
+M593 P"EI2" F54.3 S0.1                                                    ; Input shaping, vary acceleration to cancel ringing at specified frequency in Hz
 
 ; Misc Settings
 M404 N1.75                                                                ; Set filament width
