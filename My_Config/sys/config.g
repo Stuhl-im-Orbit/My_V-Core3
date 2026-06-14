@@ -1,7 +1,7 @@
 ; config.g
 ; Executed by the firmware on start-up
 
-; RepRapFirmware 3.4.6 configuration for V-Core 3.1 300x300 with:
+; RepRapFirmware 3.6.3 configuration for V-Core 3.1 300x300 with:
 ; - Duet 3 Mini 5+ Wifi
 ; - Duet 3 Toolboard 1LC (on default CAN ID #121)
 ; - Duet Paneldue 7i
