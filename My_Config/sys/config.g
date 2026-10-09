@@ -1,7 +1,7 @@
 ; config.g
 ; Executed by the firmware on start-up
 
-; RepRapFirmware 3.6.3 configuration for V-Core 3.1 300x300 with:
+; RepRapFirmware 3.7.0 configuration for V-Core 3.1 300x300 with:
 ; - Duet 3 Mini 5+ Wifi
 ; - Duet 3 Toolboard 1LC (on default CAN ID #121)
 ; - Duet Paneldue 7i
@@ -16,7 +16,7 @@
 ; General preferences
 M929 S0                                                                   ; Stop logging
 G4 S3                                                                     ; Wait for tool board to start
-M575 P1 S1 B115200                                                        ; Enable support for PanelDue
+M575 P2 S1 B115200                                                        ; Enable support for PanelDue
 M575 P0 B250000                                                           ; Set baud rate for USB port
 G21                                                                       ; Work in millimeters
 G90                                                                       ; Send absolute coordinates...
@@ -42,7 +42,8 @@ M584 X0.4 Y0.3 Z0.0:0.1:0.2 E121.0                                        ; Set 
 M350 X16 Y16 Z16 E16 I1                                                   ; Configure microstepping @16 with interpolation
 M92 X80 Y80 Z800 E690                                                     ; Set steps per mm @16 microstepping
 M98 P"0:/sys/setspeeds.g"                                                 ; Set speed and acceleration
-M906 X1400 Y1400 Z1400 E1200 I30                                          ; Set motor peak currents and motor idle factor in percent
+M906 X1600 Y1600 Z1600 I20                                                ; Set motor peak currents and motor idle factor in percent
+M906 E1200 I10                                                            ; Set extruder motor peak currents and motor idle factor in percent
 M84 S30                                                                   ; Set idle timeout
 
 ; Axis Limits
@@ -56,7 +57,7 @@ M574 Z1 S2                                                                ; Conf
 
 ; Z-Probe
 M558 K0 P8 C"121.io0.in" H3 F360:180 T18000 A3 S0.02                      ; Z probe Super PINDA
-G31 P500 X-28 Y-13 Z1.54                                                  ; Set Z probe trigger value, offset, and trigger height. More Z means closer to the bed
+G31 P500 X-28 Y-13 Z1.47                                                  ; Set Z probe trigger value, offset, and trigger height. More Z means closer to the bed
                                                                           ; Z1.54 for QSEQ Plate, Z1.65 for Rat Rig Plate, Z1.63 for 3D Jake Plate
 M671 X-4.5:150:304.5 Y-4.52:305:-4.52 S5                                  ; Define positions of Z leadscrews, 5mm maximum correction
 M557 X20:280 Y20:280 P5                                                   ; Define 5x5 mesh grid
@@ -72,13 +73,13 @@ M140 H0                                                                   ; Map 
 M143 H0 S110                                                              ; Limit heater 0 to 110C
 ; !!! Initiate the bed PID tuning process using the command: "M303 H0 S80". 
 ; !!! Replace the existing M307 command below with the result.
-M307 H0 R0.624 K0.295:0.000 D5.58 E1.35 S1.00 B0
+M307 H0 R0.609 K0.257:0.000 D6.40 E1.35 S1.00 B0
 
 M950 H1 C"121.out0" T1                                                    ; Create nozzle heater output on out0 on toolboard and map it to sensor 1
 M143 H1 S300                                                              ; Limit heater 1 to 300C
-; !!! Initiate the nozzle heater PID tuning process using the command: "M303 H1 S240".
+; !!! Initiate the nozzle heater PID tuning process using the command: "M303 H1 S245".
 ; !!! Replace the M307 command below with the result.
-M307 H1 R4.066 K0.724:0.000 D2.13 E1.35 S1.00 B0 V24.1
+M307 H1 R3.945 K0.795:0.000 D2.08 E1.35 S1.00 B0 V24.1
 
 ; Fans
 M950 F0 C"121.out1"                                                       ; Create fan 0 on pin out1 on tool board
@@ -94,11 +95,12 @@ G10 P0 R0 S0                                                              ; Set 
 M302 S180 R180                                                            ; Allow extrusion starting from 180C and retractions already from 180C
 
 ; Accelerometer
-M955 P121.0 I16                                                           ; Accelerometer on tool board, orientation (https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf)
-M593 P"EI2" F54.3 S0.1                                                    ; Input shaping, vary acceleration to cancel ringing at specified frequency in Hz
+M955 P0 C"121.i2c.lis" I16                                                        ; Accelerometer on tool board, orientation (https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf)
+M593 P"MZV" F60 S0.1                                                      ; Input shaping, vary acceleration to cancel ringing at specified frequency in Hz
 
 ; Misc Settings
 M404 N1.75                                                                ; Set filament width
 M501                                                                      ; Load saved parameters from config-override.g
 M572 D0 S0.02                                                             ; Pressure advance
+M556 S100 X0 Y-0.15 Z0.05                                                 ; Skew correction
 T0                                                                        ; Select tool 0
