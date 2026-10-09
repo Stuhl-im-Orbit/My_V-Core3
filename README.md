@@ -1,6 +1,6 @@
-# 🖨️ V-Core 3.1 300 — RepRap Firmware 3.6.1 (Duet 3)
+# 🖨️ V-Core 3.1 300 — RepRap Firmware 3.7.0 (Duet 3)
 
-Configuration repository for my **V-Core 3.1 (300 × 300 mm)** based on **RepRap Firmware 3.6.1** running on **Duet 3 Mini 5+ WiFi** and **Duet 3 Toolboard 1LC**.
+Configuration repository for my **V-Core 3.1 (300 × 300 mm)** based on **RepRap Firmware 3.7.0** running on **Duet 3 Mini 5+ WiFi** and **Duet 3 Toolboard 1LC**.
 
 This repository contains my production-ready `config.g` setup and **OrcaSlicer profiles**.
 
@@ -21,7 +21,7 @@ This repository contains my production-ready `config.g` setup and **OrcaSlicer p
 | ⚡ Heated Bed | Keenovo 280 × 280 mm – 600 W |
 | 🔁 SSR | Keenovo C-Lin 40A |
 | ⚙️ Stepper Motors | LDO-42STH47-2504AC (X/Y/Z) |
-| 💾 Firmware | RepRap Firmware 3.6.1 |
+| 💾 Firmware | RepRap Firmware 3.7.0 |
 
 ---
 
@@ -39,7 +39,7 @@ My_V-Core3/
 
 ## ⚙️ Firmware
 
-This setup is based on **RepRap Firmware 3.6.1** for Duet hardware.
+This setup is based on **RepRap Firmware 3.7.0** for Duet hardware.
 
 Useful resources:
 
